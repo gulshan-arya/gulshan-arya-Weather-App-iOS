@@ -1,0 +1,23 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+  use_frameworks!
+
+target 'Weather-App-iOS' do
+
+    source 'https://github.com/CocoaPods/Specs.git'
+    platform :ios, '10.0'
+    inhibit_all_warnings!
+
+    pod 'FBSDKLoginKit'
+
+  target 'Weather-App-iOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'Weather-App-iOSUITests' do
+    # Pods for testing
+  end
+
+end

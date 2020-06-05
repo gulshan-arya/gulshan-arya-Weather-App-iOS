@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-Weather-App-iOS/Pods-Weather-App-iOS-frameworks.sh
+${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework
+${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework
