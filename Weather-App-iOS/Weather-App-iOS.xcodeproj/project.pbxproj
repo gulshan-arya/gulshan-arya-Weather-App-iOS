@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0CEEE3E1D428A20552CC5304 /* Pods_Weather_App_iOS_Weather_App_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD893E0FCC3CDA3E56DCB8B1 /* Pods_Weather_App_iOS_Weather_App_iOSUITests.framework */; };
 		3E9A5DE056F9204522B9F7F8 /* Pods_Weather_App_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FCBBBDF225053E606598F6 /* Pods_Weather_App_iOSTests.framework */; };
+		92904D09248AC3B700807083 /* FbLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92904D08248AC3B700807083 /* FbLoginService.swift */; };
+		92904D0B248AC4BD00807083 /* NSError+Weather-App-iOS.-Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92904D0A248AC4BD00807083 /* NSError+Weather-App-iOS.-Errors.swift */; };
 		92EC8608248A9F5A00304672 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC8607248A9F5A00304672 /* AppDelegate.swift */; };
 		92EC860A248A9F5A00304672 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC8609248A9F5A00304672 /* SceneDelegate.swift */; };
 		92EC860C248A9F5A00304672 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC860B248A9F5A00304672 /* ViewController.swift */; };
@@ -47,6 +49,8 @@
 		50FCBBBDF225053E606598F6 /* Pods_Weather_App_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_App_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88565CBD830EC36727D3CB96 /* Pods-Weather-App-iOS-Weather-App-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather-App-iOS-Weather-App-iOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-Weather-App-iOS-Weather-App-iOSUITests/Pods-Weather-App-iOS-Weather-App-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		89115A92E11D8D5A9AE47816 /* Pods-Weather-App-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather-App-iOSTests.release.xcconfig"; path = "Target Support Files/Pods-Weather-App-iOSTests/Pods-Weather-App-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		92904D08248AC3B700807083 /* FbLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FbLoginService.swift; sourceTree = "<group>"; };
+		92904D0A248AC4BD00807083 /* NSError+Weather-App-iOS.-Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+Weather-App-iOS.-Errors.swift"; sourceTree = "<group>"; };
 		92EC8604248A9F5A00304672 /* Weather-App-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather-App-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92EC8607248A9F5A00304672 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92EC8609248A9F5A00304672 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +113,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		92904D07248AC39E00807083 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				92904D08248AC3B700807083 /* FbLoginService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		92EC85FB248A9F5A00304672 = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +149,7 @@
 				92EC8607248A9F5A00304672 /* AppDelegate.swift */,
 				92EC8609248A9F5A00304672 /* SceneDelegate.swift */,
 				92EC860B248A9F5A00304672 /* ViewController.swift */,
+				92904D07248AC39E00807083 /* Services */,
 				92EC863E248AA51D00304672 /* Utils */,
 				92EC8637248AA43900304672 /* Login */,
 				92EC860D248A9F5A00304672 /* Main.storyboard */,
@@ -195,6 +208,7 @@
 				92EC863F248AA54500304672 /* BioMetricIdAuth.swift */,
 				92EC8643248AB02B00304672 /* BiometricErrorMessages.swift */,
 				92EC8641248AA9A800304672 /* KeychainPasswordItem.swift */,
+				92904D0A248AC4BD00807083 /* NSError+Weather-App-iOS.-Errors.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -452,6 +466,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				92EC8640248AA54500304672 /* BioMetricIdAuth.swift in Sources */,
+				92904D09248AC3B700807083 /* FbLoginService.swift in Sources */,
+				92904D0B248AC4BD00807083 /* NSError+Weather-App-iOS.-Errors.swift in Sources */,
 				92EC863D248AA4C300304672 /* LoginViewController.swift in Sources */,
 				92EC860C248A9F5A00304672 /* ViewController.swift in Sources */,
 				92EC8608248A9F5A00304672 /* AppDelegate.swift in Sources */,

@@ -121,14 +121,19 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @IBAction func fbLoginButtonAction(_ sender: Any) {
+    @IBAction private func fbLoginButtonAction(_ sender: Any) {
         
-        // start fb login from here ...
-        
+        if !ZLFacebookLoginService.instance.isUserLoggedInToFB() {
+            ZLFacebookLoginService.instance.performFbLogin(self) { (error) in
+                if error == nil {
+                    
+                }
+            }
+        }
     }
     
     
-    @IBAction func touchIDLoginAction() {
+    @IBAction private func touchIDLoginAction() {
         touchMe.authenticateUser() { [weak self] message in
             if let message = message {
                 // if the completion is not nil show an alert
