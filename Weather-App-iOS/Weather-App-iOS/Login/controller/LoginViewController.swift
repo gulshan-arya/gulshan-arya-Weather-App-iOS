@@ -53,11 +53,16 @@ class LoginViewController: UIViewController {
         
         touchIDButton.isHidden = !touchMe.canEvaluatePolicy()
         
-        switch touchMe.biometricType() {
+        switch touchMe.getBioMetrictype() {
         case .touchID:
             touchIDButton.setImage(UIImage(named: "Touch-icon-lg"),  for: .normal)
         default: touchIDButton.isHidden = true
             
+        }
+        
+        if let str = FileReader.shared.read(at: FileReadDataSource(filePath: .indianCities, fileType: .csv, bundle: .main)) {
+            let result = try? CityInfoBuilder(citiesDataString: str, country: .india).build()
+            print(result!.count)
         }
     }
     

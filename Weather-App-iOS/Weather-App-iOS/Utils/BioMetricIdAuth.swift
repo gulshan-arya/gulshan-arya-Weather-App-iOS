@@ -22,7 +22,7 @@ class BiometricIDAuth {
     private var loginReason = "Logging in with Touch ID"
     
     //MARK:- Public method(s)
-    func biometricType() -> BiometricType {
+    func getBioMetrictype() -> BiometricType {
         let _ = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
         switch context.biometryType {
         case .touchID:
