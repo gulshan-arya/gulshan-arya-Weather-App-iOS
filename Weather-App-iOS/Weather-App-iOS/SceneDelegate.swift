@@ -19,14 +19,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: windowScene)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let rootVC = storyboard.instantiateViewController(identifier: "LoginViewController") as? LoginViewController else {
-            
             print("LoginViewController not found")
             return
         }
         let rootNC = UINavigationController(rootViewController: rootVC)
         self.window?.rootViewController = rootNC
         self.window?.makeKeyAndVisible()
-        
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {

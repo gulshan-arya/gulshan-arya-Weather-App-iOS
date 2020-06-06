@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.8.2)
   - FBSDKCoreKit (5.15.0):
     - FBSDKCoreKit/Basics (= 5.15.0)
     - FBSDKCoreKit/Core (= 5.15.0)
@@ -9,19 +10,30 @@ PODS:
     - FBSDKLoginKit/Login (= 5.15.0)
   - FBSDKLoginKit/Login (5.15.0):
     - FBSDKCoreKit (~> 5.0)
+  - ObjectMapper (3.5.1)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
+  - Alamofire (= 4.8.2)
   - FBSDKLoginKit
+  - ObjectMapper
+  - SVProgressHUD
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - Alamofire
     - FBSDKCoreKit
     - FBSDKLoginKit
+    - ObjectMapper
+    - SVProgressHUD
 
 SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   FBSDKCoreKit: 083ba8c8e37939c0b4c84250654c9be0aef0c2f8
   FBSDKLoginKit: bd40354a96e4718765713ef225bc368f10dc395d
+  ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: ffae5db8c8a62d520c6c6b4ab6a804c37c74935d
+PODFILE CHECKSUM: 51d5ca39beda4c7fbb7984645a454e1e2196d49f
 
 COCOAPODS: 1.8.3

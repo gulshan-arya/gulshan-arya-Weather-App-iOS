@@ -40,7 +40,7 @@ class CityInfoBuilder: Builder {
         let rows = citiesDataString.components(separatedBy: "\r")
         for row in rows {
             let columns = row.components(separatedBy: ",")
-            if let lat = Double(columns[10]), let lon = Double(columns[11]) {
+            if let lat = Double(columns[9]), let lon = Double(columns[10]) {
                 cities.append(
                     CityInfoModel(
                         name: columns[2],

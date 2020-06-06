@@ -62,7 +62,12 @@ class LoginViewController: UIViewController {
         
         if let str = FileReader.shared.read(at: FileReadDataSource(filePath: .indianCities, fileType: .csv, bundle: .main)) {
             let result = try? CityInfoBuilder(citiesDataString: str, country: .india).build()
-            print(result!.count)
+           
+            let pehowa = result?.first( where: {  $0.name == "Pehowa" })
+        
+            NetworkHelper.shared.getWheatherData(pehowa!.lat, lon: pehowa!.lon) { result in
+                print(result)
+            }
         }
     }
     
@@ -102,9 +107,9 @@ class LoginViewController: UIViewController {
             do {
                 
                 // This is a new account, create a new keychain item with the account name.
-                let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName,
-                                                        account: newAccountName,
-                                                        accessGroup: KeychainConfiguration.accessGroup)
+                let _ = KeychainPasswordItem(service: KeychainConfiguration.serviceName,
+                                             account: newAccountName,
+                                             accessGroup: KeychainConfiguration.accessGroup)
                 
                 // Save the password for the new item.
                 //try passwordItem.savePassword(newPassword)

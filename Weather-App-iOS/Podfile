@@ -10,6 +10,9 @@ target 'Weather-App-iOS' do
     inhibit_all_warnings!
 
     pod 'FBSDKLoginKit'
+    pod 'ObjectMapper'
+    pod 'Alamofire','4.8.2'
+    pod 'SVProgressHUD'
 
   target 'Weather-App-iOSTests' do
     inherit! :search_paths
