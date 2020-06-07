@@ -10,21 +10,24 @@ import UIKit
 
 class LauncherViewController: UIViewController {
 
+    private var viewModel: LauncherViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel = LauncherViewModel(delegate: self)
+        viewModel.viewDidLoad()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let rootVC = storyboard.instantiateViewController(identifier: "LoginViewController") as? LoginViewController else {
-            return
-        }
-        
-        let rootNC = UINavigationController(rootViewController: rootVC)
-        rootNC.setNavigationBarHidden(true, animated: true)
-        rootNC.modalPresentationStyle = .fullScreen
-        present(rootNC, animated: true)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+}
+
+extension LauncherViewController: LauncherViewModelDelegate {
+ 
+    var viewController: UIViewController {
+        return self
     }
 }

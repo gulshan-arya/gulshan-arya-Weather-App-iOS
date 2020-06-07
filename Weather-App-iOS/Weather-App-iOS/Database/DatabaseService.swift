@@ -8,16 +8,36 @@
 
 import UIKit
 
-class DatabaseService: SearchDatabase {
+class DatabaseService: UserDatabase {
     
-    private let searchDatabase = UserdefaultsDatabase()
+    private let userDatabase = UserdefaultsDatabase()
+    private let cityDatabase = CitiesInfoDBService()
     
-    //MARK:- SearchDatabase method(s)
-    func fetchRecentlySearchedImageQueries() -> [String] {
-        return searchDatabase.fetchRecentlySearchedImageQueries()
+    //MARK:- UserDatabase method(s)
+    func storeSelectedCity(_ text: String) {
+        userDatabase.storeSelectedCity(text)
     }
     
-    func saveRecentlySearchImageQuery(_ text: String) {
-        searchDatabase.saveRecentlySearchImageQuery(text)
+    func fetchUserSelectedCity() -> String? {
+        return userDatabase.fetchUserSelectedCity()
+    }
+    
+    func isUserLoggedIn() -> Bool {
+        return userDatabase.isUserLoggedIn()
+    }
+    
+    func saveUserDetails() {
+        userDatabase.saveUserDetails()
+    }
+}
+
+extension DatabaseService: CityDatabase {
+    
+    func findBySearchQuery(_ text: String) -> [CityInfoModel] {
+        return cityDatabase.findBySearchQuery(text)
+    }
+    
+    func isCityDataAvailable() -> Bool {
+        return cityDatabase.isCityDataAvailable()
     }
 }

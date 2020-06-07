@@ -26,7 +26,7 @@ enum Country: String {
 class CityInfoBuilder: Builder {
     
     private var citiesDataString: String
-    private var country: Country
+    private var country         : Country
     
     
     init(citiesDataString: String, country: Country) {

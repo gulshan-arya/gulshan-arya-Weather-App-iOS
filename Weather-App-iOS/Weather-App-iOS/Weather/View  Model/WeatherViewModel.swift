@@ -12,7 +12,7 @@ class WeatherViewModel {
 
     weak var delegate: WeatherViewModelDelegate?
     
-    private var database    : SearchDatabase
+    private var database    : UserDatabase
     private var cityData    : CityInfoModel?
 
     private(set) var weatherModel: WeatherModel?
@@ -22,7 +22,7 @@ class WeatherViewModel {
     
     private var databaseQueue = DispatchQueue(label: "com.gulshan.Weather-App-iOS", qos: .userInitiated, attributes: .concurrent)
     
-    init(database: SearchDatabase) {
+    init(database: UserDatabase) {
         self.database = database
     }
     
@@ -30,6 +30,7 @@ class WeatherViewModel {
     func viewDidLoad() {
         
         cityData == nil ? fetchWeatherDetails() : fetchWeatherDetails()
+        //CitiesInfoDBService.shared.findBySearchQuery("pehowa").first
     }
     
     //MARK:- Private method(s)
@@ -54,11 +55,3 @@ class WeatherViewModel {
         }
     }
 }
-
-
-/*
- if let str = FileReader.shared.read(at: FileReadDataSource(filePath: .indianCities, fileType: .csv, bundle: .main)) {
- let cities = try? CityInfoBuilder(citiesDataString: str, country: .india).build()
- 
- let pehowa = cities?.first( where: {  $0.name == "Pehowa" })
- */

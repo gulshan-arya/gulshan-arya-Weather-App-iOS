@@ -86,7 +86,7 @@ class LoginViewController: UIViewController {
             UserDefaults.standard.setValue(usernameTextField.text, forKey: "username")
         }
         
-        openWeatherController()
+      //  openWeatherController()
         
         //
         //            do {
@@ -116,7 +116,7 @@ class LoginViewController: UIViewController {
 //            }
 //        }
         
-        openWeatherController()
+       // openWeatherController()
     }
     
     
@@ -132,7 +132,7 @@ class LoginViewController: UIViewController {
                 self?.present(alertView, animated: true)
                 
             } else {
-                self?.openWeatherController()
+               // self?.openWeatherController()
             }
         }
     }
@@ -162,13 +162,6 @@ class LoginViewController: UIViewController {
         let okAction = UIAlertAction(title: "Foiled Again!", style: .default)
         alertView.addAction(okAction)
         present(alertView, animated: true)
-    }
-    
-    private func openWeatherController() {
-        
-        let viewModel = WeatherViewModel(database: UserdefaultsDatabase())
-        let vc = WeatherViewController(viewModel: viewModel)
-        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

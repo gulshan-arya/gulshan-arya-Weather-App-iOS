@@ -11,12 +11,18 @@ PODS:
   - FBSDKLoginKit/Login (5.15.0):
     - FBSDKCoreKit (~> 5.0)
   - ObjectMapper (3.5.1)
+  - Realm (4.3.1):
+    - Realm/Headers (= 4.3.1)
+  - Realm/Headers (4.3.1)
+  - RealmSwift (4.3.1):
+    - Realm (= 4.3.1)
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - Alamofire (= 4.8.2)
   - FBSDKLoginKit
   - ObjectMapper
+  - RealmSwift
   - SVProgressHUD
 
 SPEC REPOS:
@@ -25,6 +31,8 @@ SPEC REPOS:
     - FBSDKCoreKit
     - FBSDKLoginKit
     - ObjectMapper
+    - Realm
+    - RealmSwift
     - SVProgressHUD
 
 SPEC CHECKSUMS:
@@ -32,8 +40,10 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 083ba8c8e37939c0b4c84250654c9be0aef0c2f8
   FBSDKLoginKit: bd40354a96e4718765713ef225bc368f10dc395d
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
+  Realm: 31dc40934081ef740f60feedc46d88473cbfeb40
+  RealmSwift: b5199e9a41f67b99f51acf6874a6166f5fbe93d1
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 51d5ca39beda4c7fbb7984645a454e1e2196d49f
+PODFILE CHECKSUM: acd34bff75b835dd9b1bae7ddddc36044aea130f
 
 COCOAPODS: 1.8.3

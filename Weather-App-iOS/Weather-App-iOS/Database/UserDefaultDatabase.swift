@@ -7,19 +7,26 @@
 //
 
 
-class UserdefaultsDatabase: DatabaseLike, SearchDatabase {
+class UserdefaultsDatabase: DatabaseLike, UserDatabase {
     
     var type: DatabaseType {
         return .userDefaults
     }
     
-    func saveRecentlySearchImageQuery(_ text: String) {
+    func storeSelectedCity(_ text: String) {
         
     }
     
-    func fetchRecentlySearchedImageQueries() -> [String] {
+    func fetchUserSelectedCity() -> String? {
+        return nil
+    }
+    
+    func isUserLoggedIn() -> Bool {
+        return true
+    }
+    
+    func saveUserDetails() {
         
-        return ["Log", "CAR", "Cutie", "Flower"]
     }
     
     //MARK:- Private Method(s)

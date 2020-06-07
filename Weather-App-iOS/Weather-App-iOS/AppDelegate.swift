@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application,
             didFinishLaunchingWithOptions: launchOptions
         )
+        
+        RealmManager.createInstance()
 
         return true
     }

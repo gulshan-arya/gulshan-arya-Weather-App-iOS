@@ -9,14 +9,17 @@ protocol Spec {
     func getBaseAPIUrl() -> String
     
     func getApiKey() -> String
+    
+    func realmSchemaVersionForMigration() -> Int
+    
+    func enableClearRealmIfMigrationRequired() -> Bool
 }
 
 //We can create spec for different environment.
 class ProdSpec: Spec {
     
     func getBaseStaticImageUrl() -> String {
-        //     http://openweathermap.org/img/wn/10d@2x.png
-        return "https://openweathermap.org/weather-conditions#How-to-get-icon-URL"
+        return ""
     }
     
     func getBaseAPIUrl() -> String {
@@ -25,6 +28,14 @@ class ProdSpec: Spec {
     
     func getApiKey() -> String { //rmf3
         return "5aa8d384afe4769c566762d5e85249ba"
+    }
+    
+    func realmSchemaVersionForMigration() -> Int {
+        return 1
+    }
+    
+    func enableClearRealmIfMigrationRequired() -> Bool {
+        return true
     }
 }
 

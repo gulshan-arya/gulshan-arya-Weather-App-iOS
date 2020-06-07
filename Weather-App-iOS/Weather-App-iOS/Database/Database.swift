@@ -10,17 +10,30 @@ import Foundation
 
 enum DatabaseType {
     case userDefaults
+    case realm
 }
 
 protocol DatabaseLike {
     var type: DatabaseType { get }
 }
 
-protocol SearchDatabase {
+protocol UserDatabase {
     
-    func fetchRecentlySearchedImageQueries() -> [String]
+    func storeSelectedCity(_ text: String)
     
-    func saveRecentlySearchImageQuery(_ text: String)
+    func fetchUserSelectedCity() -> String?
+    
+    func isUserLoggedIn() -> Bool
+    
+    func saveUserDetails()
+
+}
+
+protocol CityDatabase {
+    
+    func findBySearchQuery(_ text: String) -> [CityInfoModel]
+           
+    func isCityDataAvailable() -> Bool
 }
 
 
