@@ -18,57 +18,50 @@ class LoginViewController: UIViewController {
     
     // MARK: - Properties
     var passwordItems: [KeychainPasswordItem] = []
-    let createLoginButtonTag = 0
-    let loginButtonTag = 1
     let touchMe = BiometricIDAuth()
     var managedObjectContext: NSManagedObjectContext?
     
     // MARK: - IBOutlets
-    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var loginButton      : UIButton!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var createInfoLabel: UILabel!
-    @IBOutlet weak var touchIDButton: UIButton!
-    @IBOutlet weak var fbLoginButton: UIButton!
+    @IBOutlet weak var createInfoLabel  : UILabel!
+    @IBOutlet weak var touchIDButton    : UIButton!
+    @IBOutlet weak var fbLoginButton    : UIControl!
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let hasLogin = UserDefaults.standard.bool(forKey: "hasLoginKey")
+        //let hasLogin = UserDefaults.standard.bool(forKey: "hasLoginKey")
         
-        if hasLogin {
-            loginButton.setTitle("Login", for: .normal)
-            loginButton.tag = loginButtonTag
-            createInfoLabel.isHidden = true
-        } else {
-            loginButton.setTitle("Create", for: .normal)
-            loginButton.tag = createLoginButtonTag
-            createInfoLabel.isHidden = false
-        }
+        loginButton.setTitle("Login/Signup", for: .normal)
+        createInfoLabel.isHidden = true
+        loginButton.setTitle("Login/Signup", for: .normal)
+        createInfoLabel.isHidden = false
         
         if let storedUsername = UserDefaults.standard.value(forKey: "username") as? String {
             usernameTextField.text = storedUsername
         }
         
-        touchIDButton.isHidden = !touchMe.canEvaluatePolicy()
+        //touchIDButton.isHidden = !touchMe.canEvaluatePolicy()
         
-        switch touchMe.getBioMetrictype() {
-        case .touchID:
-            touchIDButton.setImage(UIImage(named: "Touch-icon-lg"),  for: .normal)
-        default: touchIDButton.isHidden = true
-            
-        }
+//        switch touchMe.getBioMetrictype() {
+//        case .touchID:
+//            touchIDButton.setImage(UIImage(named: "Touch-icon-lg"),  for: .normal)
+//        default: touchIDButton.isHidden = true
+//            
+//        }
         
-        if let str = FileReader.shared.read(at: FileReadDataSource(filePath: .indianCities, fileType: .csv, bundle: .main)) {
-            let result = try? CityInfoBuilder(citiesDataString: str, country: .india).build()
-           
-            let pehowa = result?.first( where: {  $0.name == "Pehowa" })
-        
-            NetworkHelper.shared.getWheatherData(pehowa!.lat, lon: pehowa!.lon) { result in
-                print(result)
-            }
-        }
+//        if let str = FileReader.shared.read(at: FileReadDataSource(filePath: .indianCities, fileType: .csv, bundle: .main)) {
+//            let result = try? CityInfoBuilder(citiesDataString: str, country: .india).build()
+//
+//            let pehowa = result?.first( where: {  $0.name == "Pehowa" })
+//
+//            NetworkHelper.shared.getWheatherData(pehowa!.lat, lon: pehowa!.lon) { result in
+//                print(result)
+//            }
+//        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -86,7 +79,7 @@ class LoginViewController: UIViewController {
     
     // MARK: - Action for checking username/password
     @IBAction func loginAction(sender: UIButton) {
-        // Check that text has been entered into both the username and password fields.
+        
         guard let newAccountName = usernameTextField.text,
             let newPassword = passwordTextField.text,
             !newAccountName.isEmpty,
@@ -98,48 +91,42 @@ class LoginViewController: UIViewController {
         usernameTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         
-        if sender.tag == createLoginButtonTag {
-            let hasLoginKey = UserDefaults.standard.bool(forKey: "hasLoginKey")
-            if !hasLoginKey && usernameTextField.hasText {
-                UserDefaults.standard.setValue(usernameTextField.text, forKey: "username")
-            }
-            
-            do {
-                
-                // This is a new account, create a new keychain item with the account name.
-                let _ = KeychainPasswordItem(service: KeychainConfiguration.serviceName,
-                                             account: newAccountName,
-                                             accessGroup: KeychainConfiguration.accessGroup)
-                
-                // Save the password for the new item.
-                //try passwordItem.savePassword(newPassword)
-            } catch {
-                fatalError("Error updating keychain - \(error)")
-            }
-            
-            UserDefaults.standard.set(true, forKey: "hasLoginKey")
-            loginButton.tag = loginButtonTag
-            
-            performSegue(withIdentifier: "dismissLogin", sender: self)
-            
-        } else if sender.tag == loginButtonTag {
-            if checkLogin(username: newAccountName, password: newPassword) {
-                performSegue(withIdentifier: "dismissLogin", sender: self)
-            } else {
-                showLoginFailedAlert()
-            }
+        let hasLoginKey = UserDefaults.standard.bool(forKey: "hasLoginKey")
+        if !hasLoginKey && usernameTextField.hasText {
+            UserDefaults.standard.setValue(usernameTextField.text, forKey: "username")
         }
+        
+        openWeatherController()
+        
+        //
+        //            do {
+        //
+        //                // This is a new account, create a new keychain item with the account name.
+        //                let _ = KeychainPasswordItem(service: KeychainConfiguration.serviceName,
+        //                                             account: newAccountName,
+        //                                             accessGroup: KeychainConfiguration.accessGroup)
+        //
+        //                // Save the password for the new item.
+        //                try passwordItem.savePassword(newPassword)
+        //            } catch {
+        //                fatalError("Error updating keychain - \(error)")
+        //            }
+        
+        
     }
     
     @IBAction private func fbLoginButtonAction(_ sender: Any) {
         
-        if !ZLFacebookLoginService.instance.isUserLoggedInToFB() {
-            ZLFacebookLoginService.instance.performFbLogin(self) { (error) in
-                if error == nil {
-                    
-                }
-            }
-        }
+//        if !ZLFacebookLoginService.instance.isUserLoggedInToFB() {
+//            ZLFacebookLoginService.instance.performFbLogin(self) { (error) in
+//                if error == nil {
+//                    // Save token to db
+//                    self.openWeatherController()
+//                }
+//            }
+//        }
+        
+        openWeatherController()
     }
     
     
@@ -155,12 +142,12 @@ class LoginViewController: UIViewController {
                 self?.present(alertView, animated: true)
                 
             } else {
-                //self?.performSegue(withIdentifier: "dismissLogin", sender: self)
+                self?.openWeatherController()
             }
         }
     }
     
-    func checkLogin(username: String, password: String) -> Bool {
+    private func checkLogin(username: String, password: String) -> Bool {
         guard username == UserDefaults.standard.value(forKey: "username") as? String else {
             return false
         }
@@ -185,6 +172,12 @@ class LoginViewController: UIViewController {
         let okAction = UIAlertAction(title: "Foiled Again!", style: .default)
         alertView.addAction(okAction)
         present(alertView, animated: true)
+    }
+    
+    private func openWeatherController() {
+        
+        let vc = WeatherViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

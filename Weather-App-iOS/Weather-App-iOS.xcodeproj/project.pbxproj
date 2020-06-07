@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0CEEE3E1D428A20552CC5304 /* Pods_Weather_App_iOS_Weather_App_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD893E0FCC3CDA3E56DCB8B1 /* Pods_Weather_App_iOS_Weather_App_iOSUITests.framework */; };
 		3E9A5DE056F9204522B9F7F8 /* Pods_Weather_App_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FCBBBDF225053E606598F6 /* Pods_Weather_App_iOSTests.framework */; };
+		922FDF3F248CC83A00BAFC10 /* LauncherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922FDF3D248CC83A00BAFC10 /* LauncherViewController.swift */; };
 		923EE615248BF50B00FC0DB2 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923EE613248BF50B00FC0DB2 /* WeatherViewController.swift */; };
 		923EE616248BF50B00FC0DB2 /* WeatherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923EE614248BF50B00FC0DB2 /* WeatherViewController.xib */; };
 		923EE618248BF8DD00FC0DB2 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923EE617248BF8DD00FC0DB2 /* WeatherModel.swift */; };
@@ -65,6 +66,7 @@
 		50FCBBBDF225053E606598F6 /* Pods_Weather_App_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_App_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88565CBD830EC36727D3CB96 /* Pods-Weather-App-iOS-Weather-App-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather-App-iOS-Weather-App-iOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-Weather-App-iOS-Weather-App-iOSUITests/Pods-Weather-App-iOS-Weather-App-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		89115A92E11D8D5A9AE47816 /* Pods-Weather-App-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather-App-iOSTests.release.xcconfig"; path = "Target Support Files/Pods-Weather-App-iOSTests/Pods-Weather-App-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		922FDF3D248CC83A00BAFC10 /* LauncherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherViewController.swift; sourceTree = "<group>"; };
 		923EE613248BF50B00FC0DB2 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		923EE614248BF50B00FC0DB2 /* WeatherViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherViewController.xib; sourceTree = "<group>"; };
 		923EE617248BF8DD00FC0DB2 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
@@ -143,6 +145,37 @@
 				50FCBBBDF225053E606598F6 /* Pods_Weather_App_iOSTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		922FDF39248CC24400BAFC10 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		922FDF3A248CC80500BAFC10 /* Launcher */ = {
+			isa = PBXGroup;
+			children = (
+				922FDF3C248CC81A00BAFC10 /* view */,
+				922FDF3B248CC80D00BAFC10 /* View Controller */,
+			);
+			path = Launcher;
+			sourceTree = "<group>";
+		};
+		922FDF3B248CC80D00BAFC10 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				922FDF3D248CC83A00BAFC10 /* LauncherViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		922FDF3C248CC81A00BAFC10 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		923EE60A248BF46200FC0DB2 /* View */ = {
@@ -278,6 +311,7 @@
 			children = (
 				92EC8607248A9F5A00304672 /* AppDelegate.swift */,
 				92EC8609248A9F5A00304672 /* SceneDelegate.swift */,
+				922FDF3A248CC80500BAFC10 /* Launcher */,
 				926C8CCA248BF31B00CF4AB5 /* Config */,
 				926C8CC6248BF31B00CF4AB5 /* Database */,
 				926C8CC3248BF31B00CF4AB5 /* Network Manager */,
@@ -315,6 +349,7 @@
 		92EC8637248AA43900304672 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				922FDF39248CC24400BAFC10 /* Router */,
 				92EC863B248AA46400304672 /* view */,
 				92EC8639248AA45300304672 /* controller */,
 			);
@@ -619,6 +654,7 @@
 				926C8CD5248BF31B00CF4AB5 /* ServerConfig.swift in Sources */,
 				926C8CB4248BCBCB00CF4AB5 /* FileReader.swift in Sources */,
 				92EC8644248AB02B00304672 /* BiometricErrorMessages.swift in Sources */,
+				922FDF3F248CC83A00BAFC10 /* LauncherViewController.swift in Sources */,
 				92EC860A248A9F5A00304672 /* SceneDelegate.swift in Sources */,
 				926C8CCF248BF31B00CF4AB5 /* NetworkManager.swift in Sources */,
 				926C8CBB248BD92500CF4AB5 /* FileResourceDataSource.swift in Sources */,

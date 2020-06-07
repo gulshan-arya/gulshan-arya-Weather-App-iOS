@@ -10,6 +10,8 @@ import UIKit
 
 class WeatherViewController: UIViewController {
 
+    @IBOutlet private weak var collectionView: UICollectionView!
+    
     static var id: String {
         return "WeatherViewController"
     }
@@ -17,6 +19,12 @@ class WeatherViewController: UIViewController {
     //MARK:- Overriden Method(s)
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     //MARK:- Init Method(s)
