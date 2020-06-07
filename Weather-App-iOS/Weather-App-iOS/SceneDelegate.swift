@@ -19,7 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.window = UIWindow(windowScene: windowScene)
         }
-       // ProgressIndicator.customizeProgressIndicator()
+        
+        ProgressIndicator.customizeProgressIndicator()
        // guard let _ = (scene as? UIWindowScene) else { return }
     }
     

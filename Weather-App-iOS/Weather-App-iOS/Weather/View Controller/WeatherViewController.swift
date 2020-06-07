@@ -13,7 +13,7 @@ class WeatherViewController: UIViewController {
     enum SectionType: Int, CaseIterable {
         case currentWeather
         case hourlyWeather
-        case dailyWeather
+        case fullWeather
     }
     
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -26,7 +26,9 @@ class WeatherViewController: UIViewController {
     //MARK:- Init Method(s)
     init(viewModel: WeatherViewModel) {
         super.init(nibName: WeatherViewController.id, bundle: nil)
+        self.viewModel = viewModel
         viewModel.delegate = self
+        viewModel.viewDidLoad()
     }
     
     required init?(coder: NSCoder) {
@@ -51,7 +53,7 @@ class WeatherViewController: UIViewController {
         collectionView.delegate = self
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "collectionViewCell")
         collectionView.register(UINib(nibName: "CurrentWeatherCell", bundle: nil), forCellWithReuseIdentifier: "CurrentWeatherCell")
-        collectionView.register(UINib(nibName: "HourlyWeatherCell", bundle: nil), forCellWithReuseIdentifier: "HourlyWeatherCell")
+        collectionView.register(UINib(nibName: "CollectionViewContainerCell", bundle: nil), forCellWithReuseIdentifier: "CollectionViewContainerCell")
     }
 }
 
@@ -63,12 +65,20 @@ extension WeatherViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return viewModel?.weatherModel == nil ? 0 : 1
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = UIScreen.main.bounds.width
-        return CGSize(width: width, height: 300)
+        if let section = SectionType(rawValue: indexPath.section) {
+            switch section {
+            case .currentWeather: return CGSize(width: width, height: 300)
+            case .hourlyWeather: return CGSize(width: width, height: 200)
+            case .fullWeather: return CGSize(width: width, height: 200)
+            }
+        }
+        
+        return CGSize.zero
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -78,13 +88,16 @@ extension WeatherViewController: UICollectionViewDataSource, UICollectionViewDel
             switch section {
             case .currentWeather:
                 let weatherCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CurrentWeatherCell", for: indexPath) as! CurrentWeatherCell
+                weatherCell.updateCell(viewModel!.weatherModel!.current!)
                 return weatherCell
                 
             case .hourlyWeather:
-                let weatherCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HourlyWeatherCell", for: indexPath) as! HourlyWeatherCell
+                let weatherCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewContainerCell", for: indexPath) as! CollectionViewContainerCell
+                weatherCell.updateCell(viewModel?.weatherModel?.hourly ?? [])
                 return weatherCell
-                
-            case .dailyWeather: return cell
+            case .fullWeather:
+                return cell
+
             }
         }
         
@@ -99,7 +112,9 @@ extension WeatherViewController: WeatherViewModelDelegate {
     }
     
     func refreshUI() {
-        
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
     
     func showError() {

@@ -72,8 +72,8 @@ class LoginViewController: UIViewController {
         
         guard let newAccountName = usernameTextField.text,
             let newPassword = passwordTextField.text,
-            !newAccountName.isEmpty,
-            !newPassword.isEmpty else {
+            newAccountName.nonEmpty(),
+            newPassword.nonEmpty() else {
                 showLoginFailedAlert()
                 return
         }

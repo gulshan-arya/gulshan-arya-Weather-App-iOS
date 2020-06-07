@@ -24,7 +24,7 @@ class ProdSpec: Spec {
     }
     
     func getApiKey() -> String { //rmf3
-        return "11-5aa8d384afe4769c566762d5e85249ba"
+        return "5aa8d384afe4769c566762d5e85249ba"
     }
 }
 

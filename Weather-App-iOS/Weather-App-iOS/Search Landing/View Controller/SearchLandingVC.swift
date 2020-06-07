@@ -62,7 +62,7 @@ extension SearchLandingVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return viewModel.resultSearchResults.isEmpty ? nil : "Select from Recent Searches"
+        return viewModel.resultSearchResults.isEmpty ? nil : "Select your City" //Take this message from outside
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -109,7 +109,7 @@ extension SearchLandingVC: SearchLandingViewModelDelegate {
     
     func showHideEmptySearchView() {
         DispatchQueue.main.async {
-            self.emptySearchView.isHidden = !self.viewModel.resultSearchResults.isEmpty
+            self.emptySearchView.isHidden = self.viewModel.resultSearchResults.nonEmpty()
         }
     }
 }

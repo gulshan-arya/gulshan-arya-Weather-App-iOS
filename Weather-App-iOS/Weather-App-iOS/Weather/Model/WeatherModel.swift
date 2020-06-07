@@ -11,12 +11,12 @@ import ObjectMapper
 
 struct WeatherModel: Mappable, Validator {
 
-    private(set) var lat            : Double!
-    private(set) var lon            : Double!
-    private(set) var timeZone       : String!
-    private(set) var timezoneOffset : Int!
-    private(set) var current        : CurrentWeatherModel!
-    private(set) var hourly         : [CurrentWeatherModel]!
+    private(set) var lat            : Double?
+    private(set) var lon            : Double?
+    private(set) var timeZone       : String?
+    private(set) var timezoneOffset : Int?
+    private(set) var current        : CurrentWeatherModel?
+    private(set) var hourly         : [CurrentWeatherModel]?
 
     init?(map: Map) {
 
@@ -34,20 +34,20 @@ struct WeatherModel: Mappable, Validator {
     }
     
     func isValid() -> Bool {
-        return (current?.isValid() ?? false) && !(hourly?.isEmpty ?? true)
+        return (current?.isValid() ?? false) && (hourly?.nonEmpty() ?? false)
     }
 }
 
 struct CurrentWeatherModel: Mappable, Validator {
 
-    private(set) var currentTime        : Int!
+    private(set) var currentTime        : Int?
     private(set) var sunrise            : Int?
     private(set) var sunset             : Int?
-    private(set) var currentTemprature  : Int!
-    private(set) var pressure           : Int!
-    private(set) var humidity           : Int!
-    private(set) var windSpeed          : Int!
-    private(set) var weatherDescription : [WeatherDescriptionModel]!
+    private(set) var currentTemprature  : Double?
+    private(set) var pressure           : Int?
+    private(set) var humidity           : Int?
+    private(set) var windSpeed          : Int?
+    private(set) var weatherDescription : [WeatherDescriptionModel]?
 
     init?(map: Map) {
 
@@ -66,16 +66,16 @@ struct CurrentWeatherModel: Mappable, Validator {
     }
     
     func isValid() -> Bool {
-        return weatherDescription != nil && !weatherDescription!.isEmpty
+        return weatherDescription?.nonEmpty() ?? false
     }
 }
 
 struct WeatherDescriptionModel: Mappable {
     
-    private(set) var id   : Int!
-    private(set) var main : String!
-    private(set) var desc : String!
-    private(set) var icon : String!
+    private(set) var id   : Int?
+    private(set) var main : String?
+    private(set) var desc : String?
+    private(set) var icon : String?
 
     init?(map: Map) {
 

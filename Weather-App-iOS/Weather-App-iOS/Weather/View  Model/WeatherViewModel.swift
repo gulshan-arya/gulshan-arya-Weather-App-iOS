@@ -13,10 +13,12 @@ class WeatherViewModel {
     weak var delegate: WeatherViewModelDelegate?
     
     private var database    : SearchDatabase
-    private var weatherModel: WeatherViewModel?
     private var cityData    : CityInfoModel?
+
+    private(set) var weatherModel: WeatherModel?
     
-    // let lat: Double = 76
+    let lat: Double = 29.97
+    let lon: Double = 76.58
     
     private var databaseQueue = DispatchQueue(label: "com.gulshan.Weather-App-iOS", qos: .userInitiated, attributes: .concurrent)
     
@@ -33,23 +35,30 @@ class WeatherViewModel {
     //MARK:- Private method(s)
     private func fetchWeatherDetails() {
         
-        if let str = FileReader.shared.read(at: FileReadDataSource(filePath: .indianCities, fileType: .csv, bundle: .main)) {
-            let result = try? CityInfoBuilder(citiesDataString: str, country: .india).build()
-            
-            let pehowa = result?.first( where: {  $0.name == "Pehowa" })
-            
-            NetworkHelper.shared.getWheatherData(pehowa!.lat, lon: pehowa!.lon) { result in
-                
+        ProgressIndicator.startAnimation()
+        NetworkHelper.shared.getWheatherData(lat, lon: lon) { result in
+            DispatchQueue.main.async {
+                ProgressIndicator.stopAnimation()
                 switch result.isSuccess {
                 case true :
                     if let cityWeather = result.value, cityWeather.isValid() {
-                        
+                        self.weatherModel = result.value
+                        self.delegate?.refreshUI()
                     } else {
-                        
+                        self.delegate?.showError() /// invalid city data
                     }
-                case false:  print("")
+                case false:
+                    self.delegate?.showError()
                 }
             }
         }
     }
 }
+
+
+/*
+ if let str = FileReader.shared.read(at: FileReadDataSource(filePath: .indianCities, fileType: .csv, bundle: .main)) {
+ let cities = try? CityInfoBuilder(citiesDataString: str, country: .india).build()
+ 
+ let pehowa = cities?.first( where: {  $0.name == "Pehowa" })
+ */

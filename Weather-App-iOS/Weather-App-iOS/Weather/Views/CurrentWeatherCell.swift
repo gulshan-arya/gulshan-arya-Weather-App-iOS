@@ -23,4 +23,12 @@ class CurrentWeatherCell: UICollectionViewCell {
         weatherLabel.text = "Sunny"
         currentTemprature.text = "21\(degreeUnicode)"
     }
+    
+    //MARK:- Public method(s)
+    func updateCell(_ weatherModel: CurrentWeatherModel) {
+        
+        let temp = Utility.shared.convertKelvinToCelsiusString(Kelvin(value: weatherModel.currentTemprature!))
+        currentTemprature.text = "\(temp)\(degreeUnicode)"
+        weatherLabel.text = weatherModel.weatherDescription?.first?.main
+    }
 }

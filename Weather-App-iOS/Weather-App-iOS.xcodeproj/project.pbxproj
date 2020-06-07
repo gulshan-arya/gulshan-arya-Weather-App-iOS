@@ -52,6 +52,12 @@
 		92FD459D248D0F510020E591 /* SearchLandingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92FD4597248D0F510020E591 /* SearchLandingVC.xib */; };
 		92FD459E248D0F510020E591 /* SearchLandingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD4599248D0F510020E591 /* SearchLandingViewModel.swift */; };
 		92FD45A0248D13910020E591 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD459F248D13910020E591 /* Validator.swift */; };
+		92FD45A2248D19D70020E591 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD45A1248D19D70020E591 /* Extensions.swift */; };
+		92FD45A5248D1E950020E591 /* CollectionViewContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD45A3248D1E950020E591 /* CollectionViewContainerCell.swift */; };
+		92FD45A6248D1E950020E591 /* CollectionViewContainerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92FD45A4248D1E950020E591 /* CollectionViewContainerCell.xib */; };
+		92FD45AA248D20A60020E591 /* HourlyWeatherDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD45A9248D20A60020E591 /* HourlyWeatherDataSource.swift */; };
+		92FD45AC248D2B9B0020E591 /* ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD45AB248D2B9B0020E591 /* ProgressIndicator.swift */; };
+		92FD45AE248D2D140020E591 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD45AD248D2D140020E591 /* Utility.swift */; };
 		E111500EC4B17114A2F0E7D1 /* Pods_Weather_App_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D3C1BFC7FEDDDF83B65F59 /* Pods_Weather_App_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -127,6 +133,12 @@
 		92FD4597248D0F510020E591 /* SearchLandingVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLandingVC.xib; sourceTree = "<group>"; };
 		92FD4599248D0F510020E591 /* SearchLandingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLandingViewModel.swift; sourceTree = "<group>"; };
 		92FD459F248D13910020E591 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		92FD45A1248D19D70020E591 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		92FD45A3248D1E950020E591 /* CollectionViewContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewContainerCell.swift; sourceTree = "<group>"; };
+		92FD45A4248D1E950020E591 /* CollectionViewContainerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewContainerCell.xib; sourceTree = "<group>"; };
+		92FD45A9248D20A60020E591 /* HourlyWeatherDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherDataSource.swift; sourceTree = "<group>"; };
+		92FD45AB248D2B9B0020E591 /* ProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicator.swift; sourceTree = "<group>"; };
+		92FD45AD248D2D140020E591 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		969A87B5CC07D06BE9FC43FD /* Pods-Weather-App-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather-App-iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Weather-App-iOSTests/Pods-Weather-App-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9BB2F92B6CCC12E421C617FC /* Pods-Weather-App-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather-App-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Weather-App-iOS/Pods-Weather-App-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		C3F21A6BFBE0315C87F88599 /* Pods-Weather-App-iOS-Weather-App-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather-App-iOS-Weather-App-iOSUITests.release.xcconfig"; path = "Target Support Files/Pods-Weather-App-iOS-Weather-App-iOSUITests/Pods-Weather-App-iOS-Weather-App-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -222,8 +234,11 @@
 		923EE60C248BF47900FC0DB2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				92FD45A8248D20800020E591 /* Data Source */,
 				922FDF41248CED8600BAFC10 /* CurrentWeatherCell.swift */,
 				922FDF42248CED8600BAFC10 /* CurrentWeatherCell.xib */,
+				92FD45A3248D1E950020E591 /* CollectionViewContainerCell.swift */,
+				92FD45A4248D1E950020E591 /* CollectionViewContainerCell.xib */,
 				922FDF45248CF9EC00BAFC10 /* HourlyWeatherCell.swift */,
 				922FDF46248CF9EC00BAFC10 /* HourlyWeatherCell.xib */,
 			);
@@ -407,11 +422,14 @@
 			children = (
 				926C8CB8248BD8B500CF4AB5 /* FileReader */,
 				92EC863F248AA54500304672 /* BioMetricIdAuth.swift */,
+				92FD45AD248D2D140020E591 /* Utility.swift */,
+				92FD45A1248D19D70020E591 /* Extensions.swift */,
 				92FD459F248D13910020E591 /* Validator.swift */,
 				926C8CB3248BCBCB00CF4AB5 /* FileReader.swift */,
 				92EC8643248AB02B00304672 /* BiometricErrorMessages.swift */,
 				92EC8641248AA9A800304672 /* KeychainPasswordItem.swift */,
 				92904D0A248AC4BD00807083 /* NSError+Weather-App-iOS.-Errors.swift */,
+				92FD45AB248D2B9B0020E591 /* ProgressIndicator.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -458,6 +476,14 @@
 				92FD4599248D0F510020E591 /* SearchLandingViewModel.swift */,
 			);
 			path = "View Model";
+			sourceTree = "<group>";
+		};
+		92FD45A8248D20800020E591 /* Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				92FD45A9248D20A60020E591 /* HourlyWeatherDataSource.swift */,
+			);
+			path = "Data Source";
 			sourceTree = "<group>";
 		};
 		D49DE2FBD43913035899E056 /* Pods */ = {
@@ -590,6 +616,7 @@
 				92EC8611248A9F5B00304672 /* Assets.xcassets in Resources */,
 				922FDF44248CED8600BAFC10 /* CurrentWeatherCell.xib in Resources */,
 				92EC860F248A9F5A00304672 /* Main.storyboard in Resources */,
+				92FD45A6248D1E950020E591 /* CollectionViewContainerCell.xib in Resources */,
 				92FD459B248D0F510020E591 /* SearchSuggestionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -728,11 +755,13 @@
 				923EE615248BF50B00FC0DB2 /* WeatherViewController.swift in Sources */,
 				92FD4590248D05250020E591 /* WeatherViewModel.swift in Sources */,
 				92904D09248AC3B700807083 /* FbLoginService.swift in Sources */,
+				92FD45A5248D1E950020E591 /* CollectionViewContainerCell.swift in Sources */,
 				926C8CD3248BF31B00CF4AB5 /* SpecProvider.swift in Sources */,
 				92904D0B248AC4BD00807083 /* NSError+Weather-App-iOS.-Errors.swift in Sources */,
 				92EC863D248AA4C300304672 /* LoginViewController.swift in Sources */,
 				926C8CD4248BF31B00CF4AB5 /* Spec.swift in Sources */,
 				923EE618248BF8DD00FC0DB2 /* WeatherModel.swift in Sources */,
+				92FD45AE248D2D140020E591 /* Utility.swift in Sources */,
 				92EC8608248A9F5A00304672 /* AppDelegate.swift in Sources */,
 				92FD45A0248D13910020E591 /* Validator.swift in Sources */,
 				926C8CD5248BF31B00CF4AB5 /* ServerConfig.swift in Sources */,
@@ -745,10 +774,13 @@
 				92FD459C248D0F510020E591 /* SearchLandingVC.swift in Sources */,
 				926C8CCF248BF31B00CF4AB5 /* NetworkManager.swift in Sources */,
 				926C8CBB248BD92500CF4AB5 /* FileResourceDataSource.swift in Sources */,
+				92FD45AC248D2B9B0020E591 /* ProgressIndicator.swift in Sources */,
 				92EC8642248AA9A800304672 /* KeychainPasswordItem.swift in Sources */,
 				926C8CD0248BF31B00CF4AB5 /* UserDefaultDatabase.swift in Sources */,
+				92FD45AA248D20A60020E591 /* HourlyWeatherDataSource.swift in Sources */,
 				926C8CD1248BF31B00CF4AB5 /* Database.swift in Sources */,
 				92FD458E248D023B0020E591 /* WeatherProtocols.swift in Sources */,
+				92FD45A2248D19D70020E591 /* Extensions.swift in Sources */,
 				926C8CC2248BDD4C00CF4AB5 /* CityInfoBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
