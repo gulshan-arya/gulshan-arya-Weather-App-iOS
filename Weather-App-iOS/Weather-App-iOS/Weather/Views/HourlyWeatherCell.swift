@@ -10,14 +10,14 @@ import UIKit
 
 class HourlyWeatherCell: UICollectionViewCell {
 
-    @IBOutlet private weak var tempratureLabel  : UILabel!
+    @IBOutlet private weak var timeLabel        : UILabel!
     @IBOutlet private weak var imageView        : UIImageView!
-    @IBOutlet private weak var weatherLabel     : UILabel!
+    @IBOutlet private weak var tempratureLabel  : UILabel!
         
     override func awakeFromNib() {
         super.awakeFromNib()
+        timeLabel.text = nil
         tempratureLabel.text = nil
-        weatherLabel.text = nil
     }
     
     //MARK:- Public method(s)
@@ -26,8 +26,10 @@ class HourlyWeatherCell: UICollectionViewCell {
         if let temp = weatherModel.currentTemprature {
             tempratureLabel.text = Utility.shared.convertKelvinToCelsiusString(Kelvin(value: temp))
         }
+        
+        timeLabel.text = weatherModel.currentTime!.toHourOnly
+        
         if let weather = weatherModel.weatherDescription?.first {
-            weatherLabel.text = weather.main
             if let str = weather.icon, let image = UIImage(named: str) {
                imageView.image = image
             } else {

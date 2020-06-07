@@ -15,3 +15,24 @@ extension Collection {
         return !self.isEmpty
     }
 }
+
+typealias UnixTime = Int
+extension UnixTime {
+    private func formatType(form: String) -> DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = form
+        dateFormatter.timeZone = TimeZone.current
+        return dateFormatter
+    }
+    var dateFull: Date {
+        return Date(timeIntervalSince1970: Double(self))
+    }
+    
+    var toHourOnly: String {
+        return formatType(form: "HH").string(from: dateFull)
+    }
+    
+    var toHour: String {
+        return formatType(form: "HH:mm").string(from: dateFull)
+    }
+}

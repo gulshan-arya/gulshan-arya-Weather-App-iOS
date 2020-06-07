@@ -58,6 +58,9 @@
 		92FD45AA248D20A60020E591 /* HourlyWeatherDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD45A9248D20A60020E591 /* HourlyWeatherDataSource.swift */; };
 		92FD45AC248D2B9B0020E591 /* ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD45AB248D2B9B0020E591 /* ProgressIndicator.swift */; };
 		92FD45AE248D2D140020E591 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD45AD248D2D140020E591 /* Utility.swift */; };
+		92FD45B2248D509C0020E591 /* FullDayWeatherReportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD45B0248D509C0020E591 /* FullDayWeatherReportCell.swift */; };
+		92FD45B3248D509C0020E591 /* FullDayWeatherReportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92FD45B1248D509C0020E591 /* FullDayWeatherReportCell.xib */; };
+		92FD45B5248D52FD0020E591 /* FullDayWeatherCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD45B4248D52FD0020E591 /* FullDayWeatherCollectionDataSource.swift */; };
 		E111500EC4B17114A2F0E7D1 /* Pods_Weather_App_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D3C1BFC7FEDDDF83B65F59 /* Pods_Weather_App_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +142,9 @@
 		92FD45A9248D20A60020E591 /* HourlyWeatherDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherDataSource.swift; sourceTree = "<group>"; };
 		92FD45AB248D2B9B0020E591 /* ProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicator.swift; sourceTree = "<group>"; };
 		92FD45AD248D2D140020E591 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		92FD45B0248D509C0020E591 /* FullDayWeatherReportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullDayWeatherReportCell.swift; sourceTree = "<group>"; };
+		92FD45B1248D509C0020E591 /* FullDayWeatherReportCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FullDayWeatherReportCell.xib; sourceTree = "<group>"; };
+		92FD45B4248D52FD0020E591 /* FullDayWeatherCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullDayWeatherCollectionDataSource.swift; sourceTree = "<group>"; };
 		969A87B5CC07D06BE9FC43FD /* Pods-Weather-App-iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather-App-iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Weather-App-iOSTests/Pods-Weather-App-iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9BB2F92B6CCC12E421C617FC /* Pods-Weather-App-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather-App-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Weather-App-iOS/Pods-Weather-App-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		C3F21A6BFBE0315C87F88599 /* Pods-Weather-App-iOS-Weather-App-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather-App-iOS-Weather-App-iOSUITests.release.xcconfig"; path = "Target Support Files/Pods-Weather-App-iOS-Weather-App-iOSUITests/Pods-Weather-App-iOS-Weather-App-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -241,6 +247,8 @@
 				92FD45A4248D1E950020E591 /* CollectionViewContainerCell.xib */,
 				922FDF45248CF9EC00BAFC10 /* HourlyWeatherCell.swift */,
 				922FDF46248CF9EC00BAFC10 /* HourlyWeatherCell.xib */,
+				92FD45B0248D509C0020E591 /* FullDayWeatherReportCell.swift */,
+				92FD45B1248D509C0020E591 /* FullDayWeatherReportCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -482,6 +490,7 @@
 			isa = PBXGroup;
 			children = (
 				92FD45A9248D20A60020E591 /* HourlyWeatherDataSource.swift */,
+				92FD45B4248D52FD0020E591 /* FullDayWeatherCollectionDataSource.swift */,
 			);
 			path = "Data Source";
 			sourceTree = "<group>";
@@ -608,6 +617,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92FD45B3248D509C0020E591 /* FullDayWeatherReportCell.xib in Resources */,
 				92FD459D248D0F510020E591 /* SearchLandingVC.xib in Resources */,
 				923EE616248BF50B00FC0DB2 /* WeatherViewController.xib in Resources */,
 				926C8CB7248BD72E00CF4AB5 /* indian-cities.csv in Resources */,
@@ -761,6 +771,7 @@
 				92EC863D248AA4C300304672 /* LoginViewController.swift in Sources */,
 				926C8CD4248BF31B00CF4AB5 /* Spec.swift in Sources */,
 				923EE618248BF8DD00FC0DB2 /* WeatherModel.swift in Sources */,
+				92FD45B2248D509C0020E591 /* FullDayWeatherReportCell.swift in Sources */,
 				92FD45AE248D2D140020E591 /* Utility.swift in Sources */,
 				92EC8608248A9F5A00304672 /* AppDelegate.swift in Sources */,
 				92FD45A0248D13910020E591 /* Validator.swift in Sources */,
@@ -780,6 +791,7 @@
 				92FD45AA248D20A60020E591 /* HourlyWeatherDataSource.swift in Sources */,
 				926C8CD1248BF31B00CF4AB5 /* Database.swift in Sources */,
 				92FD458E248D023B0020E591 /* WeatherProtocols.swift in Sources */,
+				92FD45B5248D52FD0020E591 /* FullDayWeatherCollectionDataSource.swift in Sources */,
 				92FD45A2248D19D70020E591 /* Extensions.swift in Sources */,
 				926C8CC2248BDD4C00CF4AB5 /* CityInfoBuilder.swift in Sources */,
 			);

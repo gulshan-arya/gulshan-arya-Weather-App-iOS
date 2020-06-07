@@ -46,7 +46,7 @@ class Utility {
     }
     
     func getDateString(_ seconds: Int) -> String {
-        let dateVar = Date.init(timeIntervalSinceNow: TimeInterval(seconds * 1000))
+        let dateVar = Date.init(timeIntervalSince1970: TimeInterval(seconds * 1000))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy hh:mm"
         return dateFormatter.string(from: dateVar)

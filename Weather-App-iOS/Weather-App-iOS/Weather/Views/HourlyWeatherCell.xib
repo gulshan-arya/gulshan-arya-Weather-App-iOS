@@ -49,8 +49,8 @@
             <size key="customSize" width="154" height="154"/>
             <connections>
                 <outlet property="imageView" destination="UTZ-tQ-TDX" id="qrR-lO-L55"/>
-                <outlet property="tempratureLabel" destination="jim-4u-fSL" id="M31-JL-x3b"/>
-                <outlet property="weatherLabel" destination="IAX-cK-F0R" id="flF-p5-T0a"/>
+                <outlet property="tempratureLabel" destination="IAX-cK-F0R" id="flF-p5-T0a"/>
+                <outlet property="timeLabel" destination="jim-4u-fSL" id="M31-JL-x3b"/>
             </connections>
             <point key="canvasLocation" x="-21.739130434782609" y="125.22321428571428"/>
         </collectionViewCell>

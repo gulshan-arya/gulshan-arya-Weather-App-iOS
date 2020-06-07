@@ -29,6 +29,6 @@ class CurrentWeatherCell: UICollectionViewCell {
         
         let temp = Utility.shared.convertKelvinToCelsiusString(Kelvin(value: weatherModel.currentTemprature!))
         currentTemprature.text = "\(temp)\(degreeUnicode)"
-        weatherLabel.text = weatherModel.weatherDescription?.first?.main
+        weatherLabel.text = weatherModel.weatherDescription?.first?.main        
     }
 }

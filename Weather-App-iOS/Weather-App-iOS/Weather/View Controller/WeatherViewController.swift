@@ -72,9 +72,9 @@ extension WeatherViewController: UICollectionViewDataSource, UICollectionViewDel
         let width = UIScreen.main.bounds.width
         if let section = SectionType(rawValue: indexPath.section) {
             switch section {
-            case .currentWeather: return CGSize(width: width, height: 300)
+            case .currentWeather: return CGSize(width: width, height: 200)
             case .hourlyWeather: return CGSize(width: width, height: 200)
-            case .fullWeather: return CGSize(width: width, height: 200)
+            case .fullWeather: return CGSize(width: width, height: 300)
             }
         }
         
@@ -96,8 +96,9 @@ extension WeatherViewController: UICollectionViewDataSource, UICollectionViewDel
                 weatherCell.updateCell(viewModel?.weatherModel?.hourly ?? [])
                 return weatherCell
             case .fullWeather:
-                return cell
-
+                let weatherCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewContainerCell", for: indexPath) as! CollectionViewContainerCell
+                weatherCell.updateCell(viewModel!.weatherModel!.current!)
+                return weatherCell
             }
         }
         
