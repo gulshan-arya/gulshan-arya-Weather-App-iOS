@@ -15,16 +15,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weather" translatesAutoresizingMaskIntoConstraints="NO" id="v4H-r9-7JJ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjb-hM-AUA">
-                                <rect key="frame" x="143" y="435" width="128" height="26.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                <rect key="frame" x="118.5" y="430" width="177.5" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="v4H-r9-7JJ" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="EsN-Kh-472"/>
+                            <constraint firstItem="v4H-r9-7JJ" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="PGp-B1-i9L"/>
+                            <constraint firstAttribute="bottom" secondItem="v4H-r9-7JJ" secondAttribute="bottom" id="XXm-Ok-swy"/>
                             <constraint firstItem="Cjb-hM-AUA" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="a3P-hT-VbG"/>
+                            <constraint firstAttribute="trailing" secondItem="v4H-r9-7JJ" secondAttribute="trailing" id="eIo-Bx-PUY"/>
                             <constraint firstItem="Cjb-hM-AUA" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="f4G-BL-uW3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -35,4 +42,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="weather" width="237" height="474"/>
+    </resources>
 </document>

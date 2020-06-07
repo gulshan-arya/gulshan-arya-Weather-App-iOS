@@ -18,9 +18,12 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weather" translatesAutoresizingMaskIntoConstraints="NO" id="eDK-gD-cmy">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                </imageView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="vyg-vK-9l9">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Pfa-Ay-Dmt">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -31,13 +34,20 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="eDK-gD-cmy" secondAttribute="bottom" id="PnR-kQ-l1x"/>
                 <constraint firstItem="vyg-vK-9l9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Txe-fW-KsO"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="vyg-vK-9l9" secondAttribute="bottom" id="We4-5K-1dO"/>
+                <constraint firstItem="eDK-gD-cmy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="VNY-sb-ykw"/>
+                <constraint firstAttribute="bottom" secondItem="vyg-vK-9l9" secondAttribute="bottom" id="We4-5K-1dO"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vyg-vK-9l9" secondAttribute="trailing" id="asE-aH-6Jc"/>
                 <constraint firstItem="vyg-vK-9l9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="cT9-yr-0iR"/>
+                <constraint firstAttribute="trailing" secondItem="eDK-gD-cmy" secondAttribute="trailing" id="lJ4-Vk-eqU"/>
+                <constraint firstItem="eDK-gD-cmy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="oAP-vi-lyv"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="-49" y="100"/>
         </view>
     </objects>
+    <resources>
+        <image name="weather" width="237" height="474"/>
+    </resources>
 </document>

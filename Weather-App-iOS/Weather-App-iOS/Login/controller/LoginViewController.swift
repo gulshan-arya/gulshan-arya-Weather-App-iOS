@@ -52,16 +52,6 @@ class LoginViewController: UIViewController {
 //        default: touchIDButton.isHidden = true
 //            
 //        }
-        
-//        if let str = FileReader.shared.read(at: FileReadDataSource(filePath: .indianCities, fileType: .csv, bundle: .main)) {
-//            let result = try? CityInfoBuilder(citiesDataString: str, country: .india).build()
-//
-//            let pehowa = result?.first( where: {  $0.name == "Pehowa" })
-//
-//            NetworkHelper.shared.getWheatherData(pehowa!.lat, lon: pehowa!.lon) { result in
-//                print(result)
-//            }
-//        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -176,7 +166,8 @@ class LoginViewController: UIViewController {
     
     private func openWeatherController() {
         
-        let vc = WeatherViewController()
+        let viewModel = WeatherViewModel(database: UserdefaultsDatabase())
+        let vc = WeatherViewController(viewModel: viewModel)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

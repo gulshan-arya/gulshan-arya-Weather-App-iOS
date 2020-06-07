@@ -9,7 +9,7 @@
 import UIKit
 import ObjectMapper
 
-struct WeatherModel: Mappable {
+struct WeatherModel: Mappable, Validator {
 
     private(set) var lat            : Double!
     private(set) var lon            : Double!
@@ -32,9 +32,13 @@ struct WeatherModel: Mappable {
         hourly           <- map["hourly"]
       //  daily            <- map["daily"]
     }
+    
+    func isValid() -> Bool {
+        return (current?.isValid() ?? false) && !(hourly?.isEmpty ?? true)
+    }
 }
 
-struct CurrentWeatherModel: Mappable {
+struct CurrentWeatherModel: Mappable, Validator {
 
     private(set) var currentTime        : Int!
     private(set) var sunrise            : Int?
@@ -59,6 +63,10 @@ struct CurrentWeatherModel: Mappable {
         humidity             <- map["humidity"]
         windSpeed            <- map["wind_speed"]
         weatherDescription   <- map["weather"]
+    }
+    
+    func isValid() -> Bool {
+        return weatherDescription != nil && !weatherDescription!.isEmpty
     }
 }
 
