@@ -25,7 +25,7 @@ protocol UserDatabase {
     
     func isUserLoggedIn() -> Bool
     
-    func saveUserDetails()
+    func saveUserLoginDetails(_ userDetails: UserLoginDetails)
 
 }
 

@@ -130,6 +130,15 @@ extension NSError
                                 localizedReason: facebookLoginErrorMsg)
     }
     
+    static func alreadyLoggedInLoginError(_ underlyingError:NSError? = nil) -> NSError{
+        
+        let facebookLoginErrorMsg = "You are already logged in to Facebook";
+        return displayableError(.FacebookError,
+                                code: .fbLoginError,
+                                localizedDescription: facebookLoginErrorMsg,
+                                localizedReason: facebookLoginErrorMsg)
+    }
+    
     static func fbLoginCancelledError() -> NSError{
         
         let facebookLoginErrorMsg = "Facebook login was cancelled";

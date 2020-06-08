@@ -26,8 +26,8 @@ class DatabaseService: UserDatabase {
         return userDatabase.isUserLoggedIn()
     }
     
-    func saveUserDetails() {
-        userDatabase.saveUserDetails()
+    func saveUserLoginDetails(_ userDetails: UserLoginDetails) {
+        userDatabase.saveUserLoginDetails(userDetails)
     }
 }
 

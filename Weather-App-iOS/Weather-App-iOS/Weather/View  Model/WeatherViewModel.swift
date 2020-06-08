@@ -12,46 +12,76 @@ class WeatherViewModel {
 
     weak var delegate: WeatherViewModelDelegate?
     
-    private var database    : UserDatabase
+    private var database    : DatabaseService
+    private var router      = WeatherRouter()
     private var cityData    : CityInfoModel?
 
     private(set) var weatherModel: WeatherModel?
     
-    let lat: Double = 29.97
-    let lon: Double = 76.58
-    
     private var databaseQueue = DispatchQueue(label: "com.gulshan.Weather-App-iOS", qos: .userInitiated, attributes: .concurrent)
     
-    init(database: UserDatabase) {
+    init(database: DatabaseService) {
         self.database = database
+        router.delegate = self
     }
     
     //MARK:- Public method(s)
     func viewDidLoad() {
         
-        cityData == nil ? fetchWeatherDetails() : fetchWeatherDetails()
-        //CitiesInfoDBService.shared.findBySearchQuery("pehowa").first
+       setCityDataIfCityNameAvailable()
+       fetchWeatherDetails()
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        guard let vc = delegate?.viewController else { return false }
+       
+        router.openCitySelectionScreen(from: vc)
+        return false
     }
     
     //MARK:- Private method(s)
     private func fetchWeatherDetails() {
         
+        guard let lat = cityData?.lat, let lon = cityData?.lon else {
+            delegate?.shouldHideEmptySearch(false, with: Constants.defaultSearchMessage)
+            return
+        }
+        
         ProgressIndicator.startAnimation()
         NetworkHelper.shared.getWheatherData(lat, lon: lon) { result in
-            DispatchQueue.main.async {
-                ProgressIndicator.stopAnimation()
-                switch result.isSuccess {
-                case true :
-                    if let cityWeather = result.value, cityWeather.isValid() {
-                        self.weatherModel = result.value
-                        self.delegate?.refreshUI()
-                    } else {
-                        self.delegate?.showError() /// invalid city data
-                    }
-                case false:
-                    self.delegate?.showError()
+            ProgressIndicator.stopAnimation()
+            switch result.isSuccess {
+            case true :
+                if let cityWeather = result.value, cityWeather.isValid() {
+                    self.weatherModel = result.value
+                    self.delegate?.refreshUI()
+                    self.delegate?.shouldHideEmptySearch(true, with: nil)
+                } else {
+                    self.delegate?.showErrorWithMessage(NSError.genericError().localizedDescription)
                 }
+            case false:
+                let error = result.error ?? NSError.genericError()
+                self.delegate?.showErrorWithMessage(error.localizedDescription)
             }
+        }
+    }
+    
+    private func setCityDataIfCityNameAvailable() {
+        
+        if let city = database.fetchUserSelectedCity() {
+            let cityData = database.findBySearchQuery(city).first
+            self.cityData = cityData
+        }
+    }
+}
+
+extension WeatherViewModel: WeatherRouterToViewModelDelegate {
+    
+    func citySelectionVC(_ vc: CitySelectionViewController, didEndWithSearchResult result: CityInfoModel?) {
+        if cityData != result && result != nil {
+            cityData = result
+            database.storeSelectedCity(cityData?.name ?? "")
+            fetchWeatherDetails()
         }
     }
 }

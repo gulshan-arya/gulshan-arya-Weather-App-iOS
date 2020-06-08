@@ -9,9 +9,9 @@
 import Foundation
 import FBSDKLoginKit
 
-class ZLFacebookLoginService {
+class FacebookLoginService {
     
-    static let instance = ZLFacebookLoginService()
+    static let instance = FacebookLoginService()
     
     private init() { }
         
@@ -20,6 +20,8 @@ class ZLFacebookLoginService {
         
         if !isUserLoggedInToFB() {
             loginToFacebook(fromVC, completion: completion)
+        } else {
+            completion(NSError.alreadyLoggedInLoginError())
         }
     }
     
@@ -36,7 +38,7 @@ class ZLFacebookLoginService {
     private func loginToFacebook(_ fromVC: UIViewController, completion:@escaping (NSError?) -> Void) {
         
         let fbSDKLoginManager = LoginManager()
-        let readPermissions = ["public_profile","email"]
+        let readPermissions = ["email"]
         
         fbSDKLoginManager.logIn(permissions: readPermissions, from: fromVC) { (response, _error) in
             
@@ -48,7 +50,7 @@ class ZLFacebookLoginService {
                 completion(NSError.fbLoginCancelledError())
             }
             else {
-                print("successfully logged in to facebook")
+                
                 completion(nil)
             }
         }

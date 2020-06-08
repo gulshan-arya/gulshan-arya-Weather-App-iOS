@@ -16,10 +16,11 @@ class LauncherViewModel {
     private weak var delegate: LauncherViewModelDelegate?
     
     private let database = DatabaseService()
-    private var router = LauncherViewRouter()
+    private var router: LauncherViewRouter?
     
     init(delegate: LauncherViewModelDelegate) {
         self.delegate = delegate
+        router = LauncherViewRouter(rootNVC: delegate.viewController.navigationController)
     }
     
     //MARK:- Public method(s)
@@ -31,7 +32,7 @@ class LauncherViewModel {
     
     //MARK:- Private method(s)
     private func createCityDataIfNeeded() {
-        DispatchQueue.global(qos: .utility).sync { // Done Intentionally to store data in the background
+        DispatchQueue.global(qos: .utility).sync { // used sync Intentionally to store data in the background
             if !database.isCityDataAvailable() {
                 CitiesInfoDBService.createOrUpdate()
             }
@@ -45,17 +46,16 @@ class LauncherViewModel {
     }
     
     private func moveToWeatherViewController() {
-        guard let vc = delegate?.viewController else {
+        guard let route = router else {
             return
         }
-        router.openWeatherViewController(from: vc)
+        route.openWeatherViewController()
     }
     
     private func moveToLoginViewController() {
-        
-        guard let vc = delegate?.viewController else {
+        guard let route = router, let vc = delegate?.viewController else {
             return
         }
-        router.openLoginViewController(from: vc)
+        route.openLoginViewController(from: vc)
     }
 }

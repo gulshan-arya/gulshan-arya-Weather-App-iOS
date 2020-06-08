@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class CitiesInfoDBService: DatabaseLike ,CityDatabase {
+class CitiesInfoDBService: DatabaseLike , CityDatabase {
     
     var type: DatabaseType {
         return .realm

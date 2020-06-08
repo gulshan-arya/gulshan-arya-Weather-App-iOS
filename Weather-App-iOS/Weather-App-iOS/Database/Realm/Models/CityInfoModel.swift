@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class CityInfoModel {
+struct CityInfoModel: Equatable  {
 
     private(set) var name: String
     private(set) var zipcode: String

@@ -9,27 +9,48 @@
 import UIKit
 
 
+protocol LauncherViewRouterDelegate: class {
+    func loginVCDidSuccesslogin(_ vc: UIViewController)
+}
+
 
 class LauncherViewRouter {
-
-    init() {
-        
+    
+    var rootViewController: UINavigationController
+    
+    init?(rootNVC: UINavigationController?) {
+        guard let vc = rootNVC else {
+            return nil
+        }
+        self.rootViewController = vc
     }
     
     //MARK:- Public method(s)
     func openLoginViewController(from vc: UIViewController) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let rootVC = storyboard.instantiateViewController(identifier: "LoginViewController") as? LoginViewController else {
+        guard let loginVC = storyboard.instantiateViewController(identifier: "LoginViewController") as? LoginViewController else {
             return
         }
-        
-        rootVC.modalPresentationStyle = .fullScreen
-        vc.present(rootVC, animated: true)
+        let viewModel = LoginViewModel(delegate: loginVC)
+        viewModel.laucherRouterDelegate = self
+        loginVC.viewModel = viewModel
+        loginVC.modalPresentationStyle = .fullScreen
+        vc.present(loginVC, animated: true)
     }
     
-    func openWeatherViewController(from vc: UIViewController) {
-        let viewModel = WeatherViewModel(database: UserdefaultsDatabase())
-        let rootVC = WeatherViewController(viewModel: viewModel)
-        vc.navigationController?.pushViewController(rootVC, animated: true)
+    func openWeatherViewController() {
+       
+        let viewModel = WeatherViewModel(database: DatabaseService())
+        let vc = WeatherViewController(viewModel: viewModel)
+        rootViewController.pushViewController(vc, animated: true)
+    }
+}
+
+extension LauncherViewRouter: LauncherViewRouterDelegate {
+    
+    func loginVCDidSuccesslogin(_ vc: UIViewController) {
+        vc.dismiss(animated: false, completion: {
+            self.openWeatherViewController()
+        })
     }
 }

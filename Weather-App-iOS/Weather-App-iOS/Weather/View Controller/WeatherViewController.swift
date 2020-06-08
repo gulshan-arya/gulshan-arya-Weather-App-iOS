@@ -17,6 +17,9 @@ class WeatherViewController: UIViewController {
     }
     
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var searchBar     : UISearchBar!
+    @IBOutlet private weak var emptySearchView: UIView!
+    @IBOutlet private weak var searchDescriptionLabel: UILabel!
     
     private var viewModel: WeatherViewModel!
     static var id: String {
@@ -28,7 +31,6 @@ class WeatherViewController: UIViewController {
         super.init(nibName: WeatherViewController.id, bundle: nil)
         self.viewModel = viewModel
         viewModel.delegate = self
-        viewModel.viewDidLoad()
     }
     
     required init?(coder: NSCoder) {
@@ -39,12 +41,15 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchBar.delegate = self
+        searchBar.placeholder = Constants.citySearchPlaceholder
+        viewModel.viewDidLoad()
         setupCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     //MARK:- Private Method(s)
@@ -118,11 +123,28 @@ extension WeatherViewController: WeatherViewModelDelegate {
         }
     }
     
-    func showError() {
-        
+    func shouldHideEmptySearch(_ shouldHide: Bool, with message: String?) {
+        DispatchQueue.main.async {
+            let alpha: CGFloat = shouldHide ? 0 : 1
+            UIView.animate(withDuration: 0.4, animations: {
+                self.emptySearchView.alpha = alpha
+                self.emptySearchView.isHidden = shouldHide
+                self.searchDescriptionLabel.text = message
+            })
+        }
     }
     
-    func showHideViews() {
-        
+    func showErrorWithMessage(_ message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        present(alert, animated: true)
     }
 }
+
+extension WeatherViewController: UISearchBarDelegate {
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        return viewModel.searchBarShouldBeginEditing(searchBar)
+    }
+}
+

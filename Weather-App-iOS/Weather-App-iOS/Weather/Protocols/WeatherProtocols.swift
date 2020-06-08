@@ -14,15 +14,11 @@ protocol ViewControllable: class {
 
 protocol WeatherViewModelDelegate: ViewControllable {
     func refreshUI()
-    func showError()
-    func showHideViews()
+    func shouldHideEmptySearch(_ shouldShow: Bool, with message: String?)
+    func showErrorWithMessage(_ message: String)
 }
 
-protocol WeatherViewModelToRouter: class {
-    func openSearchScreen(from vc: UIViewController)
-}
-
-protocol SearchResultVCDelegate: class {
+protocol CitySelectionVCDelegate: class {
     func backButtonPressedInVC(_ vc: UIViewController)
     func seachVCDidEndSeach(_ vc: UIViewController, withText text: String)
 }

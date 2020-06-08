@@ -15,13 +15,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        let windowScene = UIWindowScene(session: session, connectionOptions: connectionOptions)
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.window = UIWindow(windowScene: windowScene)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let rootVC = storyboard.instantiateViewController(identifier: "LauncherViewController") as? LauncherViewController else {
+            return
         }
-        
+        let rootNC = UINavigationController(rootViewController: rootVC)
+        if let windowScene = scene as? UIWindowScene {
+            let window = UIWindow(windowScene: windowScene)
+            window.rootViewController = rootNC
+            self.window = window
+            window.makeKeyAndVisible()
+            
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.window = self.window
+            }
+        }
         ProgressIndicator.customizeProgressIndicator()
-       // guard let _ = (scene as? UIWindowScene) else { return }
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
