@@ -14,11 +14,11 @@ protocol HourlyWeatherDataSourceDelegate: class {
 
 class HourlyWeatherDataSource: NSObject {
 
-    private var hourlyWeather: [CurrentWeatherModel]
+    private var hourlyWeather: HourWiseWeatherViewDataSource
     
     weak var delegate: HourlyWeatherDataSourceDelegate?
     
-    init(hourlyWeather: [CurrentWeatherModel], delegate: HourlyWeatherDataSourceDelegate) {
+    init(hourlyWeather: HourWiseWeatherViewDataSource, delegate: HourlyWeatherDataSourceDelegate) {
         self.hourlyWeather = hourlyWeather
         super.init()
         
@@ -34,18 +34,17 @@ extension HourlyWeatherDataSource: UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return hourlyWeather.count
+        return hourlyWeather.numberOfItems
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = UIScreen.main.bounds.width
-        return hourlyWeather.nonEmpty() ? CGSize(width: width/3, height: 200) : .zero
+        return hourlyWeather.items[indexPath.row].size
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let weatherCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HourlyWeatherCell", for: indexPath) as! HourlyWeatherCell
-        weatherCell.updateCell(hourlyWeather[indexPath.row])
+        weatherCell.updateCell(hourlyWeather.items[indexPath.row])
         return weatherCell
     }
 }

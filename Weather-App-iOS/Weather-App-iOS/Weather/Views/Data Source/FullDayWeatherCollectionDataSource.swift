@@ -14,11 +14,10 @@ protocol FullDataWeatherCollectionDataSourceDelegate: class {
 
 class FullDayWeatherCollectionDataSource: NSObject {
 
-    private var weather: CurrentWeatherModel
-    
     weak var delegate: FullDataWeatherCollectionDataSourceDelegate?
+    private var weather: FullWeatherViewDataSource
     
-    init(fulldayWeather: CurrentWeatherModel, delegate: FullDataWeatherCollectionDataSourceDelegate) {
+    init(fulldayWeather: FullWeatherViewDataSource, delegate: FullDataWeatherCollectionDataSourceDelegate) {
         self.weather = fulldayWeather
         super.init()
         
@@ -34,18 +33,18 @@ extension FullDayWeatherCollectionDataSource: UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return weather.numberOfItems
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = UIScreen.main.bounds.width / 2
-        return CGSize(width: width, height: 80)
+        return weather.rows[indexPath.row].size
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let weatherCell = collectionView.dequeueReusableCell(withReuseIdentifier: "FullDayWeatherReportCell", for: indexPath) as! FullDayWeatherReportCell
-        weatherCell.updateCell(with: "Wind", and: "21 m/s")
+        let ds = weather.rows[indexPath.row]
+        weatherCell.updateCell(with: ds.title, and: ds.subtitle)
         return weatherCell
     }
 }

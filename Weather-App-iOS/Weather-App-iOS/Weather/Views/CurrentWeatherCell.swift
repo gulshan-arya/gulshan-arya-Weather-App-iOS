@@ -16,19 +16,11 @@ class CurrentWeatherCell: UICollectionViewCell {
    
     private var degreeUnicode = "\u{00B0}"
    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        cityLabel.text = "Pehowa"
-        weatherLabel.text = "Sunny"
-        currentTemprature.text = "21\(degreeUnicode)"
-    }
-    
     //MARK:- Public method(s)
-    func updateCell(_ weatherModel: CurrentWeatherModel) {
+    func updateCell(_ dataSource: CurrentWeatherViewDataSource) {
         
-        let temp = Utility.shared.convertKelvinToCelsiusString(Kelvin(value: weatherModel.currentTemprature!))
-        currentTemprature.text = "\(temp)\(degreeUnicode)"
-        weatherLabel.text = weatherModel.weatherDescription?.first?.main        
+        cityLabel.text = dataSource.city
+        currentTemprature.text = "\(dataSource.temprature)\(degreeUnicode)"
+        weatherLabel.text = dataSource.weather
     }
 }

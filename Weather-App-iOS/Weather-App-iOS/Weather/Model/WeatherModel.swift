@@ -46,7 +46,7 @@ struct CurrentWeatherModel: Mappable, Validator {
     private(set) var currentTemprature  : Double?
     private(set) var pressure           : Int?
     private(set) var humidity           : Int?
-    private(set) var windSpeed          : Int?
+    private(set) var windSpeed          : Double?
     private(set) var weatherDescription : [WeatherDescriptionModel]?
 
     init?(map: Map) {

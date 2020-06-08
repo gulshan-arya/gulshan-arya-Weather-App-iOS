@@ -26,20 +26,22 @@ class CollectionViewContainerCell: UICollectionViewCell {
     }
     
     //MARK:- Public method(s)
-    func updateCell(_ hourlyWeather: [CurrentWeatherModel]) {
+    func updateCell(_ hourlyWeather: HourWiseWeatherViewDataSource) {
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.scrollDirection = .horizontal
+            layout.scrollDirection = hourlyWeather.scrollDirection
         }
+        collectionView.isScrollEnabled = true
         hourlyWeatherDataSource = HourlyWeatherDataSource(hourlyWeather: hourlyWeather, delegate: self)
         collectionView.delegate = hourlyWeatherDataSource
         collectionView.dataSource = hourlyWeatherDataSource
     }
     
-    func updateCell(_ hourlyWeather: CurrentWeatherModel) {
+    func updateCell(_ fullWeather: FullWeatherViewDataSource) {
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.scrollDirection = .vertical
+            layout.scrollDirection = fullWeather.scrollDirection
         }
-        fullDayWeatherCollectionDataSource = FullDayWeatherCollectionDataSource(fulldayWeather: hourlyWeather, delegate: self)
+        collectionView.isScrollEnabled = false
+        fullDayWeatherCollectionDataSource = FullDayWeatherCollectionDataSource(fulldayWeather: fullWeather, delegate: self)
         collectionView.delegate = fullDayWeatherCollectionDataSource
         collectionView.dataSource = fullDayWeatherCollectionDataSource
     }

@@ -16,7 +16,17 @@ class WeatherViewModel {
     private var router      = WeatherRouter()
     private var cityData    : CityInfoModel?
 
-    private(set) var weatherModel: WeatherModel?
+    private var weatherModel: WeatherModel? {
+        didSet {
+            if weatherModel != nil && cityData?.name != nil {
+                layoutDataSource = WeatherLayoutDataSource(weatherModel: weatherModel!, cityName: cityData!.name)
+                delegate?.refreshUI()
+                delegate?.shouldHideEmptySearch(true, with: nil)
+            }
+        }
+    }
+    
+    private(set) var layoutDataSource: WeatherLayoutDataSource?
     
     private var databaseQueue = DispatchQueue(label: "com.gulshan.Weather-App-iOS", qos: .userInitiated, attributes: .concurrent)
     
@@ -54,8 +64,6 @@ class WeatherViewModel {
             case true :
                 if let cityWeather = result.value, cityWeather.isValid() {
                     self.weatherModel = result.value
-                    self.delegate?.refreshUI()
-                    self.delegate?.shouldHideEmptySearch(true, with: nil)
                 } else {
                     self.delegate?.showErrorWithMessage(NSError.genericError().localizedDescription)
                 }

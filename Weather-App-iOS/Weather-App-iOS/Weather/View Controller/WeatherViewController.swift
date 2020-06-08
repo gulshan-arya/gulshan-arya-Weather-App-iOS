@@ -66,44 +66,42 @@ class WeatherViewController: UIViewController {
 extension WeatherViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return SectionType.allCases.count
+        return (viewModel?.layoutDataSource?.sections.count) ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel?.weatherModel == nil ? 0 : 1
+        return viewModel?.layoutDataSource == nil ? 0 : 1
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = UIScreen.main.bounds.width
-        if let section = SectionType(rawValue: indexPath.section) {
-            switch section {
-            case .currentWeather: return CGSize(width: width, height: 200)
-            case .hourlyWeather: return CGSize(width: width, height: 200)
-            case .fullWeather: return CGSize(width: width, height: 300)
-            }
-        }
         
+        if let sections = viewModel.layoutDataSource?.sections {
+            return sections[indexPath.section].size
+        }
         return CGSize.zero
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath)
-        if let section = SectionType(rawValue: indexPath.section) {
+        if let sections = viewModel.layoutDataSource?.sections {
+            let section = sections[indexPath.section]
             switch section {
-            case .currentWeather:
+            case is CurrentWeatherViewDataSource:
                 let weatherCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CurrentWeatherCell", for: indexPath) as! CurrentWeatherCell
-                weatherCell.updateCell(viewModel!.weatherModel!.current!)
+                weatherCell.updateCell(section as! CurrentWeatherViewDataSource)
                 return weatherCell
                 
-            case .hourlyWeather:
+            case is HourWiseWeatherViewDataSource:
                 let weatherCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewContainerCell", for: indexPath) as! CollectionViewContainerCell
-                weatherCell.updateCell(viewModel?.weatherModel?.hourly ?? [])
+                weatherCell.updateCell(section as! HourWiseWeatherViewDataSource)
                 return weatherCell
-            case .fullWeather:
+            case is FullWeatherViewDataSource:
                 let weatherCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewContainerCell", for: indexPath) as! CollectionViewContainerCell
-                weatherCell.updateCell(viewModel!.weatherModel!.current!)
+                weatherCell.updateCell(section as! FullWeatherViewDataSource)
                 return weatherCell
+                
+            default: return cell
             }
         }
         

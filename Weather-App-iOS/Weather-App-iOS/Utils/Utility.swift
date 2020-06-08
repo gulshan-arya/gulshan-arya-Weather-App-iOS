@@ -44,12 +44,5 @@ class Utility {
     func convertKelvinToCelsiusString(_ kelvinTemp: Kelvin) -> String {
         return Celsius(kelvin: kelvinTemp).string
     }
-    
-    func getDateString(_ seconds: Int) -> String {
-        let dateVar = Date.init(timeIntervalSince1970: TimeInterval(seconds * 1000))
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy hh:mm"
-        return dateFormatter.string(from: dateVar)
-    }
 }
 
