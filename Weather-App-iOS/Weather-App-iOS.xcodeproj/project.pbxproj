@@ -35,6 +35,7 @@
 		926C8CD5248BF31B00CF4AB5 /* ServerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926C8CCD248BF31B00CF4AB5 /* ServerConfig.swift */; };
 		9270F77F248E746E00324E7A /* UserLoginDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9270F77E248E746E00324E7A /* UserLoginDetails.swift */; };
 		9270F783248E868000324E7A /* CollectionLayoutDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9270F782248E868000324E7A /* CollectionLayoutDataSource.swift */; };
+		9270F787248EB43F00324E7A /* us-cities.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9270F786248EB43F00324E7A /* us-cities.csv */; };
 		92904D09248AC3B700807083 /* FbLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92904D08248AC3B700807083 /* FbLoginService.swift */; };
 		92904D0B248AC4BD00807083 /* NSError+Weather-App-iOS.-Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92904D0A248AC4BD00807083 /* NSError+Weather-App-iOS.-Errors.swift */; };
 		92EC8608248A9F5A00304672 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC8607248A9F5A00304672 /* AppDelegate.swift */; };
@@ -46,7 +47,6 @@
 		92EC862A248A9F5C00304672 /* Weather_App_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC8629248A9F5C00304672 /* Weather_App_iOSUITests.swift */; };
 		92EC863D248AA4C300304672 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC863C248AA4C300304672 /* LoginViewController.swift */; };
 		92EC8640248AA54500304672 /* BioMetricIdAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC863F248AA54500304672 /* BioMetricIdAuth.swift */; };
-		92EC8642248AA9A800304672 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC8641248AA9A800304672 /* KeychainPasswordItem.swift */; };
 		92EC8644248AB02B00304672 /* BiometricErrorMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC8643248AB02B00304672 /* BiometricErrorMessages.swift */; };
 		92FD458E248D023B0020E591 /* WeatherProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD458D248D023B0020E591 /* WeatherProtocols.swift */; };
 		92FD4590248D05250020E591 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD458F248D05250020E591 /* WeatherViewModel.swift */; };
@@ -123,6 +123,7 @@
 		926C8CCD248BF31B00CF4AB5 /* ServerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerConfig.swift; sourceTree = "<group>"; };
 		9270F77E248E746E00324E7A /* UserLoginDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginDetails.swift; sourceTree = "<group>"; };
 		9270F782248E868000324E7A /* CollectionLayoutDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionLayoutDataSource.swift; sourceTree = "<group>"; };
+		9270F786248EB43F00324E7A /* us-cities.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "us-cities.csv"; sourceTree = "<group>"; };
 		92904D08248AC3B700807083 /* FbLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FbLoginService.swift; sourceTree = "<group>"; };
 		92904D0A248AC4BD00807083 /* NSError+Weather-App-iOS.-Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+Weather-App-iOS.-Errors.swift"; sourceTree = "<group>"; };
 		92EC8604248A9F5A00304672 /* Weather-App-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather-App-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,7 +141,6 @@
 		92EC862B248A9F5C00304672 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92EC863C248AA4C300304672 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		92EC863F248AA54500304672 /* BioMetricIdAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioMetricIdAuth.swift; sourceTree = "<group>"; };
-		92EC8641248AA9A800304672 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		92EC8643248AB02B00304672 /* BiometricErrorMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricErrorMessages.swift; sourceTree = "<group>"; };
 		92FD458D248D023B0020E591 /* WeatherProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherProtocols.swift; sourceTree = "<group>"; };
 		92FD458F248D05250020E591 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
@@ -305,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				926C8CB6248BD72E00CF4AB5 /* indian-cities.csv */,
+				9270F786248EB43F00324E7A /* us-cities.csv */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -478,7 +479,6 @@
 				92FD459F248D13910020E591 /* Validator.swift */,
 				926C8CB3248BCBCB00CF4AB5 /* FileReader.swift */,
 				92EC8643248AB02B00304672 /* BiometricErrorMessages.swift */,
-				92EC8641248AA9A800304672 /* KeychainPasswordItem.swift */,
 				92904D0A248AC4BD00807083 /* NSError+Weather-App-iOS.-Errors.swift */,
 				92FD45AB248D2B9B0020E591 /* ProgressIndicator.swift */,
 			);
@@ -696,6 +696,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92FD45B3248D509C0020E591 /* FullDayWeatherReportCell.xib in Resources */,
+				9270F787248EB43F00324E7A /* us-cities.csv in Resources */,
 				92FD459D248D0F510020E591 /* CitySelectionViewController.xib in Resources */,
 				923EE616248BF50B00FC0DB2 /* WeatherViewController.xib in Resources */,
 				926C8CB7248BD72E00CF4AB5 /* indian-cities.csv in Resources */,
@@ -872,7 +873,6 @@
 				926C8CBB248BD92500CF4AB5 /* FileResourceDataSource.swift in Sources */,
 				92FD45CA248D73360020E591 /* LauncherViewRouter.swift in Sources */,
 				92FD45AC248D2B9B0020E591 /* ProgressIndicator.swift in Sources */,
-				92EC8642248AA9A800304672 /* KeychainPasswordItem.swift in Sources */,
 				926C8CD0248BF31B00CF4AB5 /* UserDefaultDatabase.swift in Sources */,
 				92FD45AA248D20A60020E591 /* HourlyWeatherDataSource.swift in Sources */,
 				926C8CD1248BF31B00CF4AB5 /* Database.swift in Sources */,

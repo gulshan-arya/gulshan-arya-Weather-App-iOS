@@ -27,7 +27,7 @@ class LoginViewModel {
     
     weak var laucherRouterDelegate: LauncherViewRouterDelegate?
     
-    private let touchMe = BiometricIDAuth()
+    private let biometricIdAuth = BiometricIDAuth()
     private var userDatabase: UserDatabase = DatabaseService()
     
     init(delegate: LoginViewModelDelegate) {
@@ -35,7 +35,7 @@ class LoginViewModel {
     }
     
     func viewDidLoad() {
-        if !touchMe.canEvaluatePolicy() {
+        if !biometricIdAuth.canEvaluatePolicy() {
             delegate?.shouldHideTouchIdViews(true)
         }
     }
@@ -61,7 +61,7 @@ class LoginViewModel {
     }
     
     func viewDidTapTouchId() {
-        touchMe.authenticateUser() { [weak self] errorMessage in
+        biometricIdAuth.authenticateUser() { [weak self] errorMessage in
             if let msg = errorMessage {
                 self?.delegate?.showAlertWithMessage(msg)
             } else {

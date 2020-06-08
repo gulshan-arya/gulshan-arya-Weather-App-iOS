@@ -21,4 +21,5 @@ enum FileExtension: String {
 
 enum ResourcePath: String {
     case indianCities = "indian-cities"
+    case usaCities = "us-cities"
 }

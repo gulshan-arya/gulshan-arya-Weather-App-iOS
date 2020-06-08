@@ -16,8 +16,6 @@ struct KeychainConfiguration {
 class LoginViewController: UIViewController {
     
     // MARK: - Properties
-    var passwordItems       : [KeychainPasswordItem] = []
-    let touchMe             = BiometricIDAuth()
     var viewModel           : LoginViewModel!
     
     // MARK: - IBOutlets

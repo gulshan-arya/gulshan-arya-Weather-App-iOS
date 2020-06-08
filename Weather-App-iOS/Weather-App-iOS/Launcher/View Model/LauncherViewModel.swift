@@ -34,7 +34,7 @@ class LauncherViewModel {
     private func createCityDataIfNeeded() {
         DispatchQueue.global(qos: .utility).sync { // used sync Intentionally to store data in the background
             if !database.isCityDataAvailable() {
-                CitiesInfoDBService.createOrUpdate()
+                CitiesInfoDBService.createCityData()
             }
         }
         print("realm updated")

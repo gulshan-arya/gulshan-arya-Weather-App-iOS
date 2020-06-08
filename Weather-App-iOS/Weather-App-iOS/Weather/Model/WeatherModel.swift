@@ -30,7 +30,6 @@ struct WeatherModel: Mappable, Validator {
         timezoneOffset   <- map["timezone_offset"]
         current          <- map["current"]
         hourly           <- map["hourly"]
-      //  daily            <- map["daily"]
     }
     
     func isValid() -> Bool {
@@ -44,7 +43,6 @@ struct CurrentWeatherModel: Mappable, Validator {
     private(set) var sunrise            : Int?
     private(set) var sunset             : Int?
     private(set) var currentTemprature  : Double?
-    private(set) var pressure           : Int?
     private(set) var humidity           : Int?
     private(set) var windSpeed          : Double?
     private(set) var weatherDescription : [WeatherDescriptionModel]?
@@ -59,7 +57,6 @@ struct CurrentWeatherModel: Mappable, Validator {
         sunrise              <- map["sunrise"]
         sunset               <- map["sunset"]
         currentTemprature    <- map["feels_like"]
-        pressure             <- map["pressure"]
         humidity             <- map["humidity"]
         windSpeed            <- map["wind_speed"]
         weatherDescription   <- map["weather"]

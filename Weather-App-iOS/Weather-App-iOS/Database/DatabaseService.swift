@@ -37,6 +37,10 @@ extension DatabaseService: CityDatabase {
         return cityDatabase.findBySearchQuery(text)
     }
     
+    func findByCityId(_ id: String) -> CityInfoModel? {
+        return cityDatabase.findByCityId(id)
+    }
+    
     func isCityDataAvailable() -> Bool {
         return cityDatabase.isCityDataAvailable()
     }

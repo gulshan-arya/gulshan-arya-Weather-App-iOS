@@ -31,6 +31,8 @@ protocol UserDatabase {
 
 protocol CityDatabase {
     
+    func findByCityId(_ id: String) -> CityInfoModel?
+    
     func findBySearchQuery(_ text: String) -> [CityInfoModel]
            
     func isCityDataAvailable() -> Bool

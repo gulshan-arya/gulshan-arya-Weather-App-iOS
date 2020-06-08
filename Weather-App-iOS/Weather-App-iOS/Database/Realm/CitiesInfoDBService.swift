@@ -15,18 +15,21 @@ class CitiesInfoDBService: DatabaseLike , CityDatabase {
         return .realm
     }
     
-    static func createOrUpdate() {
+    static func createCityData() {
+        
+        createCityData(.indianCities, country: .india)
+        createCityData(.usaCities, country: .us)
+    }
+    
+    static private func createCityData(_ filePath: ResourcePath, country: Country) {
         
         let realmDB = RealmManager.instance!.getRealm(RealmDBType.STATIC)
-        if let str = FileReader.shared.read(at: FileReadDataSource(filePath: .indianCities, fileType: .csv, bundle: .main)) {
+        if let str = FileReader.shared.read(at: FileReadDataSource(filePath: filePath, fileType: .csv, bundle: .main)) {
             try! realmDB.write {
-                
-                let existingModels = realmDB.objects(CityInfoObject.self)
-                realmDB.delete(existingModels)
-                
-                if let cities = try? CityInfoBuilder(citiesDataString: str, country: .india).build() {
+                if let cities = try? CityInfoBuilder(citiesDataString: str, country: country).build() {
                     cities.forEach { cityModel in
                         let reamItem = CityInfoObject()
+                        reamItem.id = cityModel.id
                         reamItem.name = cityModel.name.uppercased()
                         reamItem.zipcode = cityModel.zipcode
                         reamItem.lat = cityModel.lat
@@ -46,10 +49,19 @@ class CitiesInfoDBService: DatabaseLike , CityDatabase {
             let predicate = NSPredicate(format: "name BEGINSWITH %@ OR zipcode BEGINSWITH %@", text.uppercased(), text)
             let results = realmDB.objects(CityInfoObject.self).filter(predicate)
             return results.map { c in
-                CityInfoModel(name: c.name, zipcode: c.zipcode, lat: c.lat, lon: c.lon, state: c.state, country: c.country)
+                CityInfoModel(id: c.id, name: c.name, zipcode: c.zipcode, lat: c.lat, lon: c.lon, state: c.state, country: c.country)
             }
         }
         return []
+    }
+    
+     func findByCityId(_ id: String) -> CityInfoModel? {
+        if let realmDB = RealmManager.instance?.getRealm(RealmDBType.STATIC){
+            return realmDB.object(ofType: CityInfoObject.self, forPrimaryKey: id).map { c in
+                CityInfoModel(id: c.id, name: c.name, zipcode: c.zipcode, lat: c.lat, lon: c.lon, state: c.state, country: c.country)
+            }
+        }
+        return nil
     }
     
     func isCityDataAvailable() -> Bool {

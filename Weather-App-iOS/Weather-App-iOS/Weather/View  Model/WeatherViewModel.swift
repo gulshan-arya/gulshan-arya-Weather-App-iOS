@@ -76,9 +76,8 @@ class WeatherViewModel {
     
     private func setCityDataIfCityNameAvailable() {
         
-        if let city = database.fetchUserSelectedCity() {
-            let cityData = database.findBySearchQuery(city).first
-            self.cityData = cityData
+        if let cityId = database.fetchUserSelectedCity() {
+            cityData = database.findByCityId(cityId)
         }
     }
 }
@@ -88,7 +87,7 @@ extension WeatherViewModel: WeatherRouterToViewModelDelegate {
     func citySelectionVC(_ vc: CitySelectionViewController, didEndWithSearchResult result: CityInfoModel?) {
         if cityData != result && result != nil {
             cityData = result
-            database.storeSelectedCity(cityData?.name ?? "")
+            database.storeSelectedCity(result!.id)
             fetchWeatherDetails()
         }
     }

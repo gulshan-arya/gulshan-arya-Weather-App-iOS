@@ -95,7 +95,7 @@ struct HourlyWeatherViewDataSource: ViewDataSource {
             currentTemprature = Utility.shared.convertKelvinToCelsiusString(Kelvin(value: temp))
         }
         
-        time = weatherModel.currentTime?.toHourOnly
+        time = weatherModel.currentTime?.toHour
         image = UIImage(named: "01d")!
         if let weather = weatherModel.weatherDescription?.first {
             if let str = weather.icon, let image = UIImage(named: str) {
@@ -103,9 +103,18 @@ struct HourlyWeatherViewDataSource: ViewDataSource {
             }
         }
         
+       
         if currentTemprature == nil || time == nil {
             return nil
         }
+        
+        let calendar = Calendar.current
+        let endTime = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: Date())
+        let oneThirdDate = calendar.date(byAdding: .hour, value: 8, to: Date())
+        
+        guard let t = weatherModel.currentTime, let e = endTime, let oneThird = oneThirdDate else { return nil }
+        guard e.timeIntervalSince1970 > TimeInterval(t) else { return nil }
+        guard oneThird.timeIntervalSince1970 > TimeInterval(t) else { return nil }
     }
 }
 
@@ -135,10 +144,6 @@ struct FullWeatherViewDataSource: ViewDataSource {
         
         if let time = currentWeather.sunrise {
             rows.append(WeatherParamsDataSource(title: "Sunrise", subtitle: time.toHour))
-        }
-    
-        if let pressure = currentWeather.pressure {
-            rows.append(WeatherParamsDataSource(title: "Pressure", subtitle: "\(pressure) hPa"))
         }
         
         if let humidity = currentWeather.humidity {
