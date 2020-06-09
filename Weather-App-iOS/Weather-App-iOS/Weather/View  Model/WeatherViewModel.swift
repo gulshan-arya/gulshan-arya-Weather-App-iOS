@@ -8,6 +8,12 @@
 
 import UIKit
 
+/// Takes the UI interactions from the ViewController
+/// Handles Business logic needed for showing weather details
+/// Makes Api call to wether network manager for fetching weather details
+/// tells the router about the city selection interaction
+/// gets data automatically from DB if city is already selected
+/// updates UI with required chanes
 class WeatherViewModel {
 
     weak var delegate: WeatherViewModelDelegate?

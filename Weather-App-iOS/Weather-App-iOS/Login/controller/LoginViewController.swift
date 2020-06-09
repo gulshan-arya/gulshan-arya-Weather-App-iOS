@@ -8,11 +8,7 @@
 
 import UIKit
 
-struct KeychainConfiguration {
-    static let serviceName = "TouchMeIn"
-    static let accessGroup: String? = nil
-}
-
+/// Handles UI required for Login screen
 class LoginViewController: UIViewController {
     
     // MARK: - Properties
@@ -20,7 +16,7 @@ class LoginViewController: UIViewController {
     
     // MARK: - IBOutlets
     @IBOutlet private weak var loginButton      : UIButton!
-    @IBOutlet private weak var usernameTextField: UITextField!
+    @IBOutlet private weak var emailTextField   : UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var createInfoLabel  : UILabel!
     @IBOutlet private weak var touchIDButton    : UIButton!
@@ -43,9 +39,9 @@ class LoginViewController: UIViewController {
     
     // MARK: - Action for checking username/password
     @IBAction func loginAction(sender: UIButton) {
-        usernameTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
-        viewModel.viewDidTapLoginWithEmail(usernameTextField.text ?? "", and: passwordTextField.text ?? "")
+        viewModel.viewDidTapLoginWithEmail(emailTextField.text ?? "", and: passwordTextField.text ?? "")
     }
     
     @IBAction private func fbLoginButtonAction(_ sender: Any) {

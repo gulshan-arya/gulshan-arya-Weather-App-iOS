@@ -12,6 +12,7 @@ protocol FullDataWeatherCollectionDataSourceDelegate: class {
     func didInitializeDataSource(_ dataSource: FullDayWeatherCollectionDataSource)
 }
 
+/// Provides UICollectionViewDataSource and UICollectionViewDelegate for overall weather details UI of the day
 class FullDayWeatherCollectionDataSource: NSObject {
 
     weak var delegate: FullDataWeatherCollectionDataSourceDelegate?

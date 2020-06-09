@@ -1,6 +1,7 @@
 
 import Foundation
 
+/// Spec provider for providing Spec required for Production and development environment
 class SpecProvider {
     
     static let currentSpec: Spec = {

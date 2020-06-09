@@ -12,6 +12,7 @@ protocol HourlyWeatherDataSourceDelegate: class {
     func didInitializeDataSource(_ dataSource: HourlyWeatherDataSource)
 }
 
+/// Provides UICollectionViewDataSource and UICollectionViewDelegate for showing Hourly weather details UI
 class HourlyWeatherDataSource: NSObject {
 
     private var hourlyWeather: HourWiseWeatherViewDataSource

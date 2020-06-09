@@ -6,6 +6,8 @@
 //  Copyright © 2020 Gulshan. All rights reserved.
 //
 
+import Foundation
+
 protocol Validator {
     func isValid() -> Bool
 }
@@ -23,7 +25,9 @@ struct EmailValidator: Validator {
     
     let email: String
     func isValid() -> Bool {
-        return email.nonEmpty() //TODO: More validation can be added here
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return email.nonEmpty() &&  emailPred.evaluate(with: email) ///TODO: More validation can be added here
     }
 }
 
@@ -31,7 +35,7 @@ struct EmailValidator: Validator {
 struct PasswordValidator: Validator {
     let password: String
     func isValid() -> Bool {
-        return password.nonEmpty() && password.count > 5
+        return password.nonEmpty() && password.count > 5 ////TODO: More validation can be added here
     }
 }
 

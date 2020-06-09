@@ -11,6 +11,9 @@ import UIKit
 protocol LauncherViewModelDelegate: ViewControllable {
 }
 
+/// Handles interaction with LauncherViewController
+/// Stores city data in city database if it is not already stored
+/// Uses router to route to different screens based on the user login status
 class LauncherViewModel {
     
     private weak var delegate: LauncherViewModelDelegate?
@@ -23,26 +26,27 @@ class LauncherViewModel {
         router = LauncherViewRouter(rootNVC: delegate.viewController.navigationController)
     }
     
-    //MARK:- Public method(s)
-    func viewDidLoad() {
+    //MARK:- Public Method(s)
+    func fetchData() {
         
         createCityDataIfNeeded()
         launchRequiredScreen()
     }
     
-    //MARK:- Private method(s)
+    //MARK:- Private Method(s)
     private func createCityDataIfNeeded() {
-        DispatchQueue.global(qos: .utility).sync { // used sync Intentionally to store data in the background
-            if !database.isCityDataAvailable() {
-                CitiesInfoDBService.createCityData()
+        
+        DispatchQueue.global(qos: .utility).sync {
+            if !self.database.isCityDataAvailable() {
+                RealmDatabase.createCityData()
             }
         }
-        print("realm updated")
     }
     
     private func launchRequiredScreen() {
-        
-        database.isUserLoggedIn() ? moveToWeatherViewController() : moveToLoginViewController()
+        DispatchQueue.main.async {
+            self.database.isUserLoggedIn() ? self.moveToWeatherViewController() : self.moveToLoginViewController()
+        }
     }
     
     private func moveToWeatherViewController() {

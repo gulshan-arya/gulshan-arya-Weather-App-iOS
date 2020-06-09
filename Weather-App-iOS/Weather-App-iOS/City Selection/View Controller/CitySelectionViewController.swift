@@ -12,6 +12,8 @@ protocol CitySelectionVCDelegateVCDelegate: class {
     func searchLandingVC(_ vc: CitySelectionViewController, didSelectCity city: CityInfoModel)
 }
 
+/// Handles UI related to search
+/// provides back the caller with the selected city if user has selected any
 class CitySelectionViewController: UIViewController {
     
     @IBOutlet private weak var searchBar                : UISearchBar!

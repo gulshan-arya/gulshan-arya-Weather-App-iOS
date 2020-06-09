@@ -2,7 +2,7 @@
 
 import Foundation
 
-
+/// Provides Url required for network APIs
 struct ServerConfig {
 
     static private let BASE_URL = SpecProvider.currentSpec.getBaseAPIUrl()

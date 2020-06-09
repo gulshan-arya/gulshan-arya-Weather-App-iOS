@@ -1,5 +1,5 @@
 //
-//  WeatherDetailManager.swift
+//  WeatherDetailsNetworkManager.swift
 //  Weather-App-iOS
 //
 //  Created by Gulshan on 06/06/20.
@@ -9,7 +9,9 @@
 import Alamofire
 import ObjectMapper
 
-class WeatherDetailManager: NetworkManager {
+
+/// Handles Api calls related to Weather
+class WeatherDetailsNetworkManager: NetworkManager {
     
     override func success<T>(result: Result<Any>) -> Result<T> {
         

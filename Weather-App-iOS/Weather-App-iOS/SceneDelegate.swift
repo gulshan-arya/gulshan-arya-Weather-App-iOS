@@ -15,6 +15,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
+        /// Setup of initial view controller of the app is going on here.  We pass out root view controller to the window object and also setting the app delegate window because
+        /// other third party libraries (like SVProgressHUD) are using AppDelegate window to show themself
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let rootVC = storyboard.instantiateViewController(identifier: "LauncherViewController") as? LauncherViewController else {
             return
@@ -39,6 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         
+        //Setup for FB SDK
         ApplicationDelegate.shared.application(
             UIApplication.shared,
             open: url,

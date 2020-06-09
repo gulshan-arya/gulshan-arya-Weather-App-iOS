@@ -21,6 +21,9 @@ enum LoginError: Error {
     case facebookError
 }
 
+/// Handles different types of login based on the UI interaction received
+/// saves data to offline storage when successful login happens
+/// updates the UI
 class LoginViewModel {
 
     weak var delegate: LoginViewModelDelegate?

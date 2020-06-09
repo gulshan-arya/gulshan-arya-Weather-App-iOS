@@ -14,6 +14,7 @@ enum LoginType: String {
     case fbLogin
 }
 
+/// Contains user login details along with login type
 struct UserLoginDetails: Codable {
     let loginType : LoginType.RawValue
     let isLoggedIn: Bool

@@ -8,6 +8,8 @@
 
 import Foundation
 
+/// Can be used to Build any type of object
+/// TODO: move this to separate file
 protocol Builder: class {
     
     associatedtype T
@@ -23,6 +25,8 @@ enum Country: String {
     case us = "US"
 }
 
+/// Builds the city data from citiesDataString and country passed.
+/// This class is actually doing the calculation part for the data present in the csv
 class CityInfoBuilder: Builder {
     
     private var citiesDataString: String

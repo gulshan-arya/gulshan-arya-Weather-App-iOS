@@ -11,9 +11,11 @@ import RealmSwift
 
 enum RealmDBType: String {
     case STATIC = "staticDB"
-    case USER   = "userDB"
+    case USER   = "userDB" /// Not in use , should be deleted.
 }
 
+/// NOTE: This service is intended to be used from RealmManager only.
+/// Provides configuration for realm and creates realm instance.
 class RealmDBService {
     
     static func getRealmInstance(_ realmDBType: RealmDBType) -> Realm {
@@ -26,17 +28,17 @@ class RealmDBService {
         
         let newRealmVersion =  UInt64(SpecProvider.currentSpec.realmSchemaVersionForMigration())
         var config = Realm.Configuration(
-            // Set the new schema version. This must be greater than the previously used
+            /// Set the new schema version. This must be greater than the previously used
             schemaVersion: newRealmVersion,
             
-            // Set the block which will be called automatically when opening a Realm with
-            // a schema version lower than the one set above
+            /// Set the block which will be called automatically when opening a Realm with
+            /// a schema version lower than the one set above
             migrationBlock: { migration, oldSchemaVersion in
                 
                 if (oldSchemaVersion < newRealmVersion) {
-                    // Nothing to do!
-                    // Realm will automatically detect new properties and removed properties
-                    // And will update the schema on disk automatically
+                    /// Nothing to do!
+                    /// Realm will automatically detect new properties and removed properties
+                    /// And will update the schema on disk automatically
                 }
         })
         

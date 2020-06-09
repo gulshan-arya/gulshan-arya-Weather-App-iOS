@@ -17,7 +17,11 @@ protocol DatabaseLike {
     var type: DatabaseType { get }
 }
 
-protocol UserDatabase {
+/// Interface for different type of database
+protocol Database {
+}
+
+protocol UserDatabase: Database {
     
     func storeSelectedCity(_ text: String)
     
@@ -29,11 +33,11 @@ protocol UserDatabase {
 
 }
 
-protocol CityDatabase {
+protocol CityDatabase: Database {
     
     func findByCityId(_ id: String) -> CityInfoModel?
     
-    func findBySearchQuery(_ text: String) -> [CityInfoModel]
+    func findByCityNameOrZipCode(_ text: String) -> [CityInfoModel]
            
     func isCityDataAvailable() -> Bool
 }
