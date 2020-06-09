@@ -8,11 +8,7 @@
 
 import UIKit
 
-struct KeychainConfiguration {
-    static let serviceName = "TouchMeIn"
-    static let accessGroup: String? = nil
-}
-
+/// Handles UI required for Login screen
 class LoginViewController: UIViewController {
     
     // MARK: - Properties

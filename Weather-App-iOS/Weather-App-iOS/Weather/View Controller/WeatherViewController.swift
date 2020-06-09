@@ -8,6 +8,8 @@
 
 import UIKit
 
+/// Handles UI needed for weather details with the output received from view model
+/// Talks to viewmodel  through the UI interaction
 class WeatherViewController: UIViewController {
     
     enum SectionType: Int, CaseIterable {

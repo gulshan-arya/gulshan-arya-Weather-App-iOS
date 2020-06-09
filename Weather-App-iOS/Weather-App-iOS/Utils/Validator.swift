@@ -23,7 +23,7 @@ struct EmailValidator: Validator {
     
     let email: String
     func isValid() -> Bool {
-        return email.nonEmpty() //TODO: More validation can be added here
+        return email.nonEmpty() ///TODO: More validation can be added here
     }
 }
 
@@ -31,7 +31,7 @@ struct EmailValidator: Validator {
 struct PasswordValidator: Validator {
     let password: String
     func isValid() -> Bool {
-        return password.nonEmpty() && password.count > 5
+        return password.nonEmpty() && password.count > 5 ////TODO: More validation can be added here
     }
 }
 

@@ -8,10 +8,13 @@
 
 import UIKit
 
+/// Acts an interface for querying the underlying database
+/// TODO: Make separate layer for providing access to different types of database from the DatabaseService instance and use that instance as an inteface for
+/// proviiding the access to the required database only not the whole database
 class DatabaseService: UserDatabase {
     
     private let userDatabase = UserdefaultsDatabase()
-    private let cityDatabase = CitiesInfoDBService()
+    private let cityDatabase = RealmDatabase()
     
     //MARK:- UserDatabase method(s)
     func storeSelectedCity(_ text: String) {
@@ -33,8 +36,8 @@ class DatabaseService: UserDatabase {
 
 extension DatabaseService: CityDatabase {
     
-    func findBySearchQuery(_ text: String) -> [CityInfoModel] {
-        return cityDatabase.findBySearchQuery(text)
+    func findByCityNameOrZipCode(_ text: String) -> [CityInfoModel] {
+        return cityDatabase.findByCityNameOrZipCode(text)
     }
     
     func findByCityId(_ id: String) -> CityInfoModel? {

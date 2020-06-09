@@ -15,6 +15,8 @@ protocol CitySelectionViewModelDelegate: class {
     func shouldShowEmptySearchView(_ isHidden: Bool, with text: String)
 }
 
+/// Queries DB for city data
+/// udpates the UI according to the text received from the UI
 class CitySelectionViewModel {
     
     weak var viewDelegate: CitySelectionViewModelDelegate?
@@ -33,7 +35,7 @@ class CitySelectionViewModel {
     }
     
     func searchBar(_ serchBar: UISearchBar, DidChangeText text: String) {
-        self.cities = database.findBySearchQuery(text)
+        self.cities = database.findByCityNameOrZipCode(text)
         viewDelegate?.refreshUI()
         viewDelegate?.shouldShowEmptySearchView(cities.nonEmpty(), with: Constants.emptySearchMessage)
     }

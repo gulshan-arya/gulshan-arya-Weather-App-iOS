@@ -8,14 +8,22 @@
 
 import UIKit
 
-protocol ViewDataSource {
+/// Should be used by collection view only
+protocol CollectionViewDataSource {
     var numberOfItems: Int { get }
     var size: CGSize { get }
 }
 
+extension CollectionViewDataSource {
+    var numberOfItems: Int { // For Containers views who do not have nested collection view.
+        return 0
+    }
+}
+
+/// Contains the view data source required for weatehr view
 struct WeatherLayoutDataSource {
  
-    private(set) var sections = [ViewDataSource]()
+    private(set) var sections = [CollectionViewDataSource]()
     
     init(weatherModel: WeatherModel, cityName: String) {
         
@@ -36,7 +44,7 @@ struct WeatherLayoutDataSource {
     }
 }
 
-struct CurrentWeatherViewDataSource: ViewDataSource {
+struct CurrentWeatherViewDataSource: CollectionViewDataSource {
     
     let city      : String
     let temprature: String
@@ -46,13 +54,9 @@ struct CurrentWeatherViewDataSource: ViewDataSource {
         let width = UIScreen.main.bounds.width
         return CGSize(width: width, height: 200)
     }
-    
-    var numberOfItems: Int {
-        return 0
-    }
 }
 
-struct HourWiseWeatherViewDataSource: ViewDataSource {
+struct HourWiseWeatherViewDataSource: CollectionViewDataSource {
     
     var size: CGSize {
         let width = UIScreen.main.bounds.width
@@ -74,7 +78,7 @@ struct HourWiseWeatherViewDataSource: ViewDataSource {
     }
 }
 
-struct HourlyWeatherViewDataSource: ViewDataSource {
+struct HourlyWeatherViewDataSource: CollectionViewDataSource {
     
     private(set) var currentTemprature: String!
     private(set) var time: String!
@@ -83,10 +87,6 @@ struct HourlyWeatherViewDataSource: ViewDataSource {
     var size: CGSize {
         let width = UIScreen.main.bounds.width
         return CGSize(width: width/3, height: 150)
-    }
-    
-    var numberOfItems: Int {
-        return 0
     }
     
     init?(weatherModel: CurrentWeatherModel) {
@@ -118,7 +118,7 @@ struct HourlyWeatherViewDataSource: ViewDataSource {
     }
 }
 
-struct FullWeatherViewDataSource: ViewDataSource {
+struct FullWeatherViewDataSource: CollectionViewDataSource {
     
     var size: CGSize {
         return _size
@@ -128,14 +128,15 @@ struct FullWeatherViewDataSource: ViewDataSource {
         return rows.count
     }
     
-    private var _size: CGSize
     private(set) var scrollDirection = UICollectionView.ScrollDirection.horizontal
     private(set) var rows = [WeatherParamsDataSource]()
+    
+    private var _size: CGSize
     
     init(currentWeather: CurrentWeatherModel) {
         
         if let time = currentWeather.currentTime {
-            rows.append(WeatherParamsDataSource(title: "Time", subtitle: time.toHour))
+            rows.append(WeatherParamsDataSource(title: "Time", subtitle: time.toHour)) ///Store the string constants in some file
         }
         
         if let time = currentWeather.sunset {
@@ -159,15 +160,11 @@ struct FullWeatherViewDataSource: ViewDataSource {
     }
 }
 
-struct WeatherParamsDataSource: ViewDataSource {
+struct WeatherParamsDataSource: CollectionViewDataSource {
     
     var size: CGSize {
         let width = UIScreen.main.bounds.width / 2
         return CGSize(width: width, height: 80)
-    }
-    
-    var numberOfItems: Int {
-        return 0
     }
     
      let title: String

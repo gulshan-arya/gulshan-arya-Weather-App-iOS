@@ -9,6 +9,8 @@
 import Foundation
 import FBSDKLoginKit
 
+/// Handles the logic required for performing the FBLogin
+/// Only perform the login if user is not already logged in the app
 class FacebookLoginService {
     
     static let instance = FacebookLoginService()

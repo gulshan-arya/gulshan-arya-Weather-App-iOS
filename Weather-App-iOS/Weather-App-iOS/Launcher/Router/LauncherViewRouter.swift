@@ -13,7 +13,8 @@ protocol LauncherViewRouterDelegate: class {
     func loginVCDidSuccesslogin(_ vc: UIViewController)
 }
 
-
+/// Handles routing to Login and Weather Screens
+/// It gets notfified from the Login screen whenever successful login happens
 class LauncherViewRouter {
     
     var rootViewController: UINavigationController

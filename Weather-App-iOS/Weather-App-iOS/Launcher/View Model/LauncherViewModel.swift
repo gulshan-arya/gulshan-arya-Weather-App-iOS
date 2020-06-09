@@ -11,6 +11,9 @@ import UIKit
 protocol LauncherViewModelDelegate: ViewControllable {
 }
 
+/// Handles interaction with LauncherViewController
+/// Stores city data in city database if it is not already stored
+/// Uses router to route to different screens based on the user login status
 class LauncherViewModel {
     
     private weak var delegate: LauncherViewModelDelegate?
@@ -32,12 +35,20 @@ class LauncherViewModel {
     
     //MARK:- Private method(s)
     private func createCityDataIfNeeded() {
-        DispatchQueue.global(qos: .utility).sync { // used sync Intentionally to store data in the background
+        
+        DispatchQueue.main.async {
+            ProgressIndicator.startAnimation() /// Use activity indicator , it is not looking good
+        }
+        
+        DispatchQueue.global(qos: .utility).sync { /// used sync Intentionally to store data in the background while UI updates can be done on main thred if needed
             if !database.isCityDataAvailable() {
-                CitiesInfoDBService.createCityData()
+                RealmDatabase.createCityData()
             }
         }
-        print("realm updated")
+        
+        DispatchQueue.main.async {
+            ProgressIndicator.stopAnimation()
+        }
     }
     
     private func launchRequiredScreen() {

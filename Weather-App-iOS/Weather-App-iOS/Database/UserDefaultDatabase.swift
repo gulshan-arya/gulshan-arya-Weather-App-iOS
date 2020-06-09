@@ -8,7 +8,8 @@
 
 import Foundation
 
-class UserdefaultsDatabase: DatabaseLike, UserDatabase {
+/// Stores User related data in userderfaults
+struct UserdefaultsDatabase: DatabaseLike, UserDatabase {
    
     var type: DatabaseType {
         return .userDefaults
@@ -30,6 +31,7 @@ class UserdefaultsDatabase: DatabaseLike, UserDatabase {
         return result
     }
     
+    ///TODO: This method should throw if decode fails
     func isUserLoggedIn() -> Bool {
         if let data = UserDefaults.standard.data(forKey: userLoginDetailsKey) {
             do {
@@ -42,6 +44,7 @@ class UserdefaultsDatabase: DatabaseLike, UserDatabase {
         return false
     }
     
+    ///TODO: This method should throw if save fails
     func saveUserLoginDetails(_ userDetails: UserLoginDetails) {
         do {
             let data = try JSONEncoder().encode(userDetails)

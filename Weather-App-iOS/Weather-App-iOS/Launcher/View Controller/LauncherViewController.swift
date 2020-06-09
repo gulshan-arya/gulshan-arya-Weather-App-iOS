@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Provided the UI requried during App Launch
 class LauncherViewController: UIViewController {
 
     private var viewModel: LauncherViewModel!

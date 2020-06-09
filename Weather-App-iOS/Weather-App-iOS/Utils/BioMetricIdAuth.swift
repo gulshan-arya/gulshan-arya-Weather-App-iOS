@@ -16,6 +16,7 @@ enum BiometricType {
   case touchID
 }
 
+/// Handles BiometricID Authente
 class BiometricIDAuth {
     
     private let context = LAContext()

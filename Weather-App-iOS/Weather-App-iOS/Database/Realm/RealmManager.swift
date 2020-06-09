@@ -8,12 +8,13 @@
 import Foundation
 import RealmSwift
 
+/// Handles creation and deletion of realm instance and storage.
 class RealmManager {
     
     static var instance: RealmManager?
     
     var staticRealm: Realm?
-    var userRealm: Realm?
+    var userRealm: Realm? //TODO: Remove this, not getting used.
     
     private init() {}
     
@@ -26,7 +27,7 @@ class RealmManager {
         }
     }
     
-    func getRealm(_ dbType: RealmDBType = RealmDBType.USER) -> Realm {
+    func getRealm(_ dbType: RealmDBType = RealmDBType.STATIC) -> Realm {
         if dbType == RealmDBType.STATIC {
             return staticRealm!
         } else {
@@ -57,10 +58,4 @@ class RealmManager {
         RealmManager.instance?.closeRealm()
         self.instance = nil
     }
-    
-    
-    deinit{
-        print("deinit")
-    }
-    
 }

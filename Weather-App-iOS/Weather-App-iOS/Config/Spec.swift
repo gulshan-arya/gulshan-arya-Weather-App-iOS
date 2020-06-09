@@ -2,6 +2,7 @@
 import Foundation
 
 
+/// Interface used for providing Base Urls and versioning required for different modules e.g realm and for different environment
 protocol Spec {
     
     func getBaseStaticImageUrl() -> String
@@ -15,7 +16,8 @@ protocol Spec {
     func enableClearRealmIfMigrationRequired() -> Bool
 }
 
-//We can create spec for different environment.
+/// Contains Spec information for Prod environment.
+/// We can create spec for different environment like alpha , beta etc.
 class ProdSpec: Spec {
     
     func getBaseStaticImageUrl() -> String {

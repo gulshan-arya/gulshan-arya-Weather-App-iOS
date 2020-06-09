@@ -12,6 +12,8 @@ protocol WeatherRouterToViewModelDelegate: class {
     func citySelectionVC(_ vc: CitySelectionViewController, didEndWithSearchResult result: CityInfoModel?)
 }
 
+/// Handles the routing for weather flow
+/// Talks back to weather view model if any forwarded flow returns something back using delegates
 class WeatherRouter {
 
     weak var delegate: WeatherRouterToViewModelDelegate?
@@ -21,7 +23,7 @@ class WeatherRouter {
     }
     
     func openCitySelectionScreen(from vc: UIViewController) {
-        let viewModel = CitySelectionViewModel(database: CitiesInfoDBService())
+        let viewModel = CitySelectionViewModel(database: RealmDatabase())
         let citySelectionVC = CitySelectionViewController(viewModel: viewModel)
         citySelectionVC.delegate = self
         vc.navigationController?.pushViewController(citySelectionVC, animated: true)
